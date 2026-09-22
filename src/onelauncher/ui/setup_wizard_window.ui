@@ -18,8 +18,7 @@
                 <string>OneLauncher Setup Wizard:</string>
             </property>
             <property name="subTitle">
-                <string>This wizard will quickly take you through the steps needed to get up and
-                    running with OneLauncher. </string>
+                <string>This wizard will quickly take you through the steps needed to get up and running with OneLauncher. </string>
             </property>
             <attribute name="pageId">
                 <string notr="true">0</string>
@@ -128,8 +127,7 @@
                 <string>Games Selection</string>
             </property>
             <property name="subTitle">
-                <string>Select your game installations. The first one will be the main game
-                    instance.</string>
+                <string>Select your game installations. The first one will be the main game instance.</string>
             </property>
             <attribute name="pageId">
                 <string notr="true">1</string>
@@ -242,9 +240,7 @@
                 <string>Existing Games Data</string>
             </property>
             <property name="subTitle">
-                <string>Some of your game installations are already registered with OneLauncher. You
-                    can choose to have their settings and accounts either kept or reset. Unselected
-                    games are always removed.</string>
+                <string>Some of your game installations are already registered with OneLauncher. You can choose to have their settings and accounts either kept or reset. Unselected games are always removed.</string>
             </property>
             <attribute name="pageId">
                 <string notr="true">2</string>
@@ -317,8 +313,7 @@
                 <string>Setup Finished</string>
             </property>
             <property name="subTitle">
-                <string>That's it! You can always check out the settings menu or addons manager for
-                    extra customization.</string>
+                <string>That's it! You can always check out the settings menu or addons manager for extra customization.</string>
             </property>
             <attribute name="pageId">
                 <string notr="true">3</string>

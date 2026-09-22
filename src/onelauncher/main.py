@@ -13,7 +13,7 @@ from .config_manager import (
 from .game_config import GameConfigID
 from .i18n import install_ui_translator
 from .main_window import MainWindow
-from .resources import get_default_locale
+from .program_config import ProgramConfig
 from .setup_wizard import SetupWizard
 from .ui.error_message_window_uic import Ui_errorMessageWindow
 from .ui.qtapp import get_qapp
@@ -83,34 +83,31 @@ def verify_configs(config_manager: ConfigManager) -> bool:
 async def start_ui(config_manager: ConfigManager, game_id: GameConfigID | None) -> None:
     # The QApplication has to exist before a translator can be installed.
     _ = get_qapp()
-    install_ui_translator(
-        config_manager.get_program_config().default_locale
-        if config_manager.program_config_path.exists()
-        else get_default_locale()
-    )
 
-    # Run setup wizard.
-    if not config_manager.program_config_path.exists():
-        logger.info("No program config found. Starting setup wizard.")
-        setup_wizard = SetupWizard(config_manager)
-        await setup_wizard.run()
-        if setup_wizard.result() == QtWidgets.QDialog.DialogCode.Rejected:
-            # Close program if the user left the setup wizard without finishing.
-            return
-        return await start_ui(config_manager=config_manager, game_id=game_id)
+    # This fork replaces the multi-page first run wizard with a single page for
+    # choosing game directories, so the program config is created using its
+    # defaults instead of being filled in by that wizard. The default locale is
+    # the system one, which is what makes the interface match the system
+    # language on first start.
+    is_first_run = not config_manager.program_config_path.exists()
+    if is_first_run:
+        config_manager.update_program_config_file(ProgramConfig())
+
+    install_ui_translator(config_manager.read_program_config_file().default_locale)
 
     try:
         initial_game_id = config_manager.get_initial_game()
-    # Run the games selection portion of the setup wizard.
+    # Run the games selection page, which is all that is needed on first run.
     except NoValidGamesError:
-        QtWidgets.QMessageBox.information(
-            None,
-            QtCore.QCoreApplication.translate("main", "No Games Found"),
-            QtCore.QCoreApplication.translate(
-                "main",
-                "No games have been registered with {title}.\n Opening games management wizard.",
-            ).format(title=__title__),
-        )
+        if not is_first_run:
+            QtWidgets.QMessageBox.information(
+                None,
+                QtCore.QCoreApplication.translate("main", "No Games Found"),
+                QtCore.QCoreApplication.translate(
+                    "main",
+                    "No games have been registered with {title}.\n Opening games management wizard.",
+                ).format(title=__title__),
+            )
         setup_wizard = SetupWizard(config_manager, game_selection_only=True)
         await setup_wizard.run()
         if setup_wizard.result() == QtWidgets.QDialog.DialogCode.Rejected:

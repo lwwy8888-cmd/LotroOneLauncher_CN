@@ -456,12 +456,12 @@
     <context>
         <name>main</name>
         <message>
-            <location filename="../../main.py" line="108" />
+            <location filename="../../main.py" line="105" />
             <source>No Games Found</source>
             <translation>未找到游戏</translation>
         </message>
         <message>
-            <location filename="../../main.py" line="109" />
+            <location filename="../../main.py" line="106" />
             <source>No games have been registered with {title}.
  Opening games management wizard.</source>
             <translation>尚未在 {title} 中注册任何游戏。将打开游戏管理向导。</translation>
@@ -893,126 +893,121 @@
             <translation>OneLauncher 设置向导：</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="21" />
-            <source>This wizard will quickly take you through the steps needed to get up and
-                    running with OneLauncher. </source>
-            <translation>本向导将带你快速完成 OneLauncher 的初始设置。</translation>
-        </message>
-        <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="33" />
-            <location filename="../../ui/setup_wizard_window.ui" line="55" />
+            <location filename="../../ui/setup_wizard_window.ui" line="32" />
+            <location filename="../../ui/setup_wizard_window.ui" line="54" />
             <source>The language used for games by default</source>
             <translation>游戏默认使用的语言</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="36" />
+            <location filename="../../ui/setup_wizard_window.ui" line="35" />
             <source>Default Language</source>
             <translation>默认语言</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="105" />
+            <location filename="../../ui/setup_wizard_window.ui" line="104" />
             <source>Always show OneLauncher interface in default language</source>
             <translation>OneLauncher 界面始终使用默认语言</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="108" />
+            <location filename="../../ui/setup_wizard_window.ui" line="107" />
             <source>Always Use Default Language For UI</source>
             <translation>界面始终使用默认语言</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="128" />
+            <location filename="../../ui/setup_wizard_window.ui" line="127" />
             <source>Games Selection</source>
             <translation>选择游戏</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="131" />
-            <source>Select your game installations. The first one will be the main game
-                    instance.</source>
+            <location filename="../../ui/setup_wizard_window.ui" line="21" />
+            <source>This wizard will quickly take you through the steps needed to get up and running with OneLauncher. </source>
+            <translation>本向导将带你快速完成 OneLauncher 的初始设置。</translation>
+        </message>
+        <message>
+            <location filename="../../ui/setup_wizard_window.ui" line="130" />
+            <source>Select your game installations. The first one will be the main game instance.</source>
             <translation>选择你的游戏安装位置。第一个将作为主游戏实例。</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="165" />
-            <location filename="../../ui/setup_wizard_window.ui" line="307" />
+            <location filename="../../ui/setup_wizard_window.ui" line="163" />
+            <location filename="../../ui/setup_wizard_window.ui" line="303" />
             <source>icon-xl</source>
             <translation>icon-xl</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="186" />
+            <location filename="../../ui/setup_wizard_window.ui" line="184" />
             <source>Decrease priority</source>
             <translation>降低优先级</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="189" />
+            <location filename="../../ui/setup_wizard_window.ui" line="187" />
             <source>↓</source>
             <translation>↓</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="196" />
+            <location filename="../../ui/setup_wizard_window.ui" line="194" />
             <source>Increase priority</source>
             <translation>提高优先级</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="199" />
+            <location filename="../../ui/setup_wizard_window.ui" line="197" />
             <source>↑</source>
             <translation>↑</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="219" />
+            <location filename="../../ui/setup_wizard_window.ui" line="217" />
             <source>Select an existing game directory from the file browser</source>
             <translation>从文件浏览器中选择已有的游戏目录</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="222" />
+            <location filename="../../ui/setup_wizard_window.ui" line="220" />
             <source>Add Existing Game</source>
             <translation>添加已有游戏</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="229" />
+            <location filename="../../ui/setup_wizard_window.ui" line="227" />
             <source>Create a new game installation</source>
             <translation>创建新的游戏安装</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="232" />
+            <location filename="../../ui/setup_wizard_window.ui" line="230" />
             <source>Install New Game</source>
             <translation>安装新游戏</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="242" />
+            <location filename="../../ui/setup_wizard_window.ui" line="240" />
             <source>Existing Games Data</source>
             <translation>已有游戏数据</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="245" />
-            <source>Some of your game installations are already registered with OneLauncher. You
-                    can choose to have their settings and accounts either kept or reset. Unselected
-                    games are always removed.</source>
+            <location filename="../../ui/setup_wizard_window.ui" line="243" />
+            <source>Some of your game installations are already registered with OneLauncher. You can choose to have their settings and accounts either kept or reset. Unselected games are always removed.</source>
             <translation>部分游戏安装已在 OneLauncher 中注册。你可以选择保留或重置它们的设置与账号。未选中的游戏将被移除。</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="256" />
+            <location filename="../../ui/setup_wizard_window.ui" line="316" />
+            <source>That's it! You can always check out the settings menu or addons manager for extra customization.</source>
+            <translation>完成！随时可以在设置菜单或插件管理器中做更多自定义。</translation>
+        </message>
+        <message>
+            <location filename="../../ui/setup_wizard_window.ui" line="252" />
             <source>What should happen to existing game data?</source>
             <translation>如何处理已有的游戏数据？</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="262" />
+            <location filename="../../ui/setup_wizard_window.ui" line="258" />
             <source>Keep it</source>
             <translation>保留</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="272" />
+            <location filename="../../ui/setup_wizard_window.ui" line="268" />
             <source>Reset it</source>
             <translation>重置</translation>
         </message>
         <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="317" />
+            <location filename="../../ui/setup_wizard_window.ui" line="313" />
             <source>Setup Finished</source>
             <translation>设置完成</translation>
-        </message>
-        <message>
-            <location filename="../../ui/setup_wizard_window.ui" line="320" />
-            <source>That's it! You can always check out the settings menu or addons manager for
-                    extra customization.</source>
-            <translation>完成！随时可以在设置菜单或插件管理器中做更多自定义。</translation>
         </message>
     </context>
 </TS>
