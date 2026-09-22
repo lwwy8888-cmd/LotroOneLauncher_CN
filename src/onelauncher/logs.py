@@ -10,6 +10,8 @@ from platform import platform
 from types import TracebackType
 from typing import Final, override
 
+from PySide6 import QtCore
+
 from onelauncher.async_utils import app_cancel_scope
 from onelauncher.resources import data_dir
 
@@ -29,10 +31,12 @@ class LogLevel(IntEnum):
 
 
 def log_basic_info(logger: logging.Logger) -> None:
-    logger.info("Logging started")
-    logger.info("%s: %s", __title__, __version__)
+    logger.info(QtCore.QCoreApplication.translate("logs", "Logging started"))
+    logger.info(
+        QtCore.QCoreApplication.translate("logs", "%s: %s"), __title__, __version__
+    )
     logger.info(platform())
-    logger.info("Data Dir: %s", data_dir)
+    logger.info(QtCore.QCoreApplication.translate("logs", "Data Dir: %s"), data_dir)
 
 
 def handle_uncaught_exceptions(
@@ -46,7 +50,10 @@ def handle_uncaught_exceptions(
         # call the default excepthook saved at __excepthook__
         sys.__excepthook__(exc_type, exc_value, exc_traceback)
         return
-    logger.critical("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
+    logger.critical(
+        QtCore.QCoreApplication.translate("logs", "Uncaught exception"),
+        exc_info=(exc_type, exc_value, exc_traceback),
+    )
     app_cancel_scope.cancel()
 
 

@@ -43,6 +43,7 @@ from xml.etree.ElementTree import Element
 
 import attrs
 from defusedxml import ElementTree  # type: ignore[import-untyped]
+from PySide6 import QtCore
 
 logger = logging.getLogger(__name__)
 
@@ -137,14 +138,20 @@ class CaseInsensitiveAbsolutePath(Path):
             try:
                 exact_match_index = matches.index(case_insensitive_name)
                 logger.warning(
-                    "Multiple matches found for case-insensitive path name. One exact "
-                    "match found. Using exact match.",
+                    QtCore.QCoreApplication.translate(
+                        "utilities",
+                        "Multiple matches found for case-insensitive path name. One exact "
+                        "match found. Using exact match.",
+                    ),
                 )
                 return matches[exact_match_index]
             except ValueError:
                 logger.warning(
-                    "Multiple matches found for case-insensitive path name with no exact "
-                    "match. Using first one found."
+                    QtCore.QCoreApplication.translate(
+                        "utilities",
+                        "Multiple matches found for case-insensitive path name with no exact "
+                        "match. Using first one found.",
+                    )
                 )
                 return matches[0]
         else:

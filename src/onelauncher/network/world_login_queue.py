@@ -2,6 +2,7 @@ from typing import Any, Final, NamedTuple
 
 import attrs
 import xmlschema
+from PySide6 import QtCore
 
 from ..resources import data_dir
 from .httpx_client import get_httpx_client
@@ -95,11 +96,17 @@ class WorldLoginQueue:
             #     timed out/suspended for a little while.
             if hresult == 0x80004005:  # noqa: PLR2004
                 raise JoinWorldQueueFailedError(
-                    msg="Failed to join world login queue. Please try again later."
+                    msg=QtCore.QCoreApplication.translate(
+                        "world_login_queue",
+                        "Failed to join world login queue. Please try again later.",
+                    )
                 )
             else:
                 exception = JoinWorldQueueFailedError(
-                    msg="Non-network error joining world login queue"
+                    msg=QtCore.QCoreApplication.translate(
+                        "world_login_queue",
+                        "Non-network error joining world login queue",
+                    )
                 )
                 exception.add_note(f"HRESULT: {hex(hresult)}")
                 raise exception

@@ -509,7 +509,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
                 doc = defusedxml.minidom.parse(str(compendium_file))
             except ExpatError:
                 logger.warning(
-                    "`.plugincompendium` file has invalid XML: %s",
+                    self.tr("`.plugincompendium` file has invalid XML: %s"),
                     compendium_file,
                     exc_info=True,
                 )
@@ -531,7 +531,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
 
                     if not descriptor_path.exists():
                         logger.error(
-                            "%s has misconfigured descriptors", compendium_file
+                            self.tr("%s has misconfigured descriptors"), compendium_file
                         )
 
     def addInstalledPluginsToDB(
@@ -575,7 +575,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
             doc = defusedxml.minidom.parse(str(file))
             nodes = doc.getElementsByTagName(tag)[0].childNodes
         except (ExpatError, IndexError):
-            logger.exception("`%s` has invalid XML", file.name)
+            logger.exception(self.tr("`%s` has invalid XML"), file.name)
             return None
         for node in nodes:
             if node.nodeName == "Name":
@@ -700,7 +700,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
             )
 
         # Populate cache, so that add-ons aren't initially shown as unmanaged.
-        logger.info("Downloading remote addons info")
+        logger.info(self.tr("Downloading remote addons info"))
         self.loadRemoteAddons()
 
     def closeDB(self) -> None:
@@ -736,9 +736,11 @@ class AddonManagerWindow(QWidgetWithStylePreview):
             return
         elif addon_path.suffix == ".rar":
             logger.error(
-                "%s does not support .rar archives, because it"
-                " is a proprietary format that would require an external "
-                "program to extract",
+                self.tr(
+                    "%s does not support .rar archives, because it"
+                    " is a proprietary format that would require an external "
+                    "program to extract"
+                ),
                 __title__,
             )
             return
@@ -747,11 +749,11 @@ class AddonManagerWindow(QWidgetWithStylePreview):
 
     def installAbcFile(self, addon_path: Path) -> None:
         if self.config_manager.get_game_config(self.game_id).game_type == GameType.DDO:
-            logger.error("DDO does not support .abc/music files")
+            logger.error(self.tr("DDO does not support .abc/music files"))
             return
 
         copy(str(addon_path), self.data_folder_music)
-        logger.debug("ABC file installed at %s", addon_path)
+        logger.debug(self.tr("ABC file installed at %s"), addon_path)
 
         # Plain .abc files are installed to base music directory,
         # so what is scanned can't be controlled.
@@ -769,7 +771,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
             with zipfile.ZipFile(addon_path, "r") as archive:
                 # Addons without any files aren't valid
                 if all(zip_info.is_dir() for zip_info in archive.infolist()):
-                    logger.error("Addon Zip is empty")
+                    logger.error(self.tr("Addon Zip is empty"))
                     return
 
                 archive.extractall(tmp_dir)
@@ -795,7 +797,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
     ) -> None:
         """Install plugin from temporary directory"""
         if self.config_manager.get_game_config(self.game_id).game_type == GameType.DDO:
-            logger.error("DDO does not support plugins")
+            logger.error(self.tr("DDO does not support plugins"))
             return
 
         table = self.ui.tablePlugins
@@ -836,7 +838,9 @@ class AddonManagerWindow(QWidgetWithStylePreview):
             ]:
                 author_folder = author_folders_plugin[0]
             else:
-                logger.error("Plugin doesn't have an author folder with a .plugin file")
+                logger.error(
+                    self.tr("Plugin doesn't have an author folder with a .plugin file")
+                )
                 return
         else:
             author_folder = author_folders[0]
@@ -895,7 +899,9 @@ class AddonManagerWindow(QWidgetWithStylePreview):
         if interface_id:
             self.handleStartupScriptActivationPrompt(table, interface_id)
         logger.debug(
-            "Installed plugin corresponding to %s %s", plugin_files, compendium_files
+            self.tr("Installed plugin corresponding to %s %s"),
+            plugin_files,
+            compendium_files,
         )
 
         self.installAddonRemoteDependencies(self.ui.tablePluginsInstalled)
@@ -914,7 +920,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
         """
         existing_compendium_files = list(tmp_search_dir.glob("*.*compendium"))
         if len(existing_compendium_files) > 1:
-            logger.error("Addon has multiple compendium files")
+            logger.error(self.tr("Addon has multiple compendium files"))
             return False
         elif len(existing_compendium_files) == 1:
             return existing_compendium_files[0]
@@ -927,7 +933,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
         addon_name: str,
     ) -> Literal[False] | None:
         if self.config_manager.get_game_config(self.game_id).game_type == GameType.DDO:
-            logger.error("DDO does not support .abc/music files")
+            logger.error(self.tr("DDO does not support .abc/music files"))
             return None
 
         # Some plugins have .abc files, but music collections
@@ -961,7 +967,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
         if interface_id:
             self.handleStartupScriptActivationPrompt(table, interface_id)
 
-        logger.debug("%s music installed at %s", addon_name, root_dir)
+        logger.debug(self.tr("%s music installed at %s"), addon_name, root_dir)
 
         self.installAddonRemoteDependencies(self.ui.tableMusicInstalled)
         return None
@@ -998,7 +1004,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
         if interface_id:
             self.handleStartupScriptActivationPrompt(table, interface_id)
 
-        logger.debug("%s skin installed at %s", addon_name, root_dir)
+        logger.debug(self.tr("%s skin installed at %s"), addon_name, root_dir)
 
         self.installAddonRemoteDependencies(table=self.ui.tableSkinsInstalled)
 
@@ -1594,7 +1600,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
                         doc = defusedxml.minidom.parse(plugin[1])
                     except ExpatError:
                         logger.warning(
-                            "`.plugincompendium` file has invalid XML: %s",
+                            self.tr("`.plugincompendium` file has invalid XML: %s"),
                             plugin[1],
                             exc_info=True,
                         )
@@ -1625,7 +1631,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
                         doc = defusedxml.minidom.parse(str(plugin_file))
                     except ExpatError:
                         logger.warning(
-                            "`.plugin` file has invalid XML: %s",
+                            self.tr("`.plugin` file has invalid XML: %s"),
                             plugin_file,
                             exc_info=True,
                         )
@@ -1650,7 +1656,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
                 if next(author_dir.iterdir(), None) is None:
                     author_dir.rmdir()
 
-            logger.debug("%s plugin uninstalled", plugin)
+            logger.debug(self.tr("%s plugin uninstalled"), plugin)
 
             self.setRemoteAddonToUninstalled(plugin, self.ui.tablePlugins)
 
@@ -1674,7 +1680,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
                 skin_path = Path(skin.file)
             rmtree(skin_path)
 
-            logger.debug("%s skin uninstalled", skin)
+            logger.debug(self.tr("%s skin uninstalled"), skin)
 
             self.setRemoteAddonToUninstalled(skin, self.ui.tableSkins)
 
@@ -1702,7 +1708,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
             else:
                 rmtree(music_path)
 
-            logger.debug("%s music uninstalled", music)
+            logger.debug(self.tr("%s music uninstalled"), music)
 
             self.setRemoteAddonToUninstalled(music, self.ui.tableMusic)
 
@@ -1876,7 +1882,9 @@ class AddonManagerWindow(QWidgetWithStylePreview):
             addons_file_response.raise_for_status()
         except HTTPError:
             logger.exception(
-                "There was a network error. You may want to check your connection."
+                self.tr(
+                    "There was a network error. You may want to check your connection."
+                )
             )
             self.ui.tabBarSource.setCurrentIndex(0)
             return False
@@ -1885,7 +1893,9 @@ class AddonManagerWindow(QWidgetWithStylePreview):
             doc = defusedxml.minidom.parseString(addons_file_response.text)
         except ExpatError:
             logger.exception(
-                "Addons feed has invalid XML. Please report this error if it continues."
+                self.tr(
+                    "Addons feed has invalid XML. Please report this error if it continues."
+                )
             )
             return False
 
@@ -1954,7 +1964,9 @@ class AddonManagerWindow(QWidgetWithStylePreview):
                 )
             except (urllib.error.URLError, urllib.error.HTTPError):
                 logger.exception(
-                    "There was a network error. You may want to check your connection."
+                    self.tr(
+                        "There was a network error. You may want to check your connection."
+                    )
                 )
                 self.ui.progressBar.setVisible(False)
                 return False
@@ -2485,7 +2497,9 @@ class AddonManagerWindow(QWidgetWithStylePreview):
             )
         else:
             logger.error(
-                "'%s' startup script does not exist, so it could not be enabled.",
+                self.tr(
+                    "'%s' startup script does not exist, so it could not be enabled."
+                ),
                 full_script_path,
             )
 

@@ -451,7 +451,12 @@ def get_wine_process_args(
 ) -> tuple[tuple[str | Path, ...], MappingProxyType[str, str]]:
     """Configure `run_process` arguments to use WINE."""
     if os.name == "nt":
-        logger.warning("Attempt to use WINE on Windows. No changes were made.")
+        logger.warning(
+            QtCore.QCoreApplication.translate(
+                "WineManagement",
+                "Attempt to use WINE on Windows. No changes were made.",
+            )
+        )
         return command, environment
 
     edited_environment = environment.copy()

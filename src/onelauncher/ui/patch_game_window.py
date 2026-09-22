@@ -91,7 +91,7 @@ class PatchGameWindow(QtWidgets.QDialog):
         self.reset_buttons()
 
         if not PATCH_CLIENT_RUNNER.exists():
-            logger.error("Cannot patch. run_ptch_client.exe is missing.")
+            logger.error(self.tr("Cannot patch. run_ptch_client.exe is missing."))
             self.ui.btnStart.setEnabled(False)
 
     async def run(self) -> None:
@@ -129,7 +129,7 @@ class PatchGameWindow(QtWidgets.QDialog):
             self.close()
         else:
             self.patching_cancel_scope.cancel()
-            logger.info("***  Aborted  ***")
+            logger.info(self.tr("***  Aborted  ***"))
 
     async def keep_progress_bar_updated(self) -> None:
         # Will be canceled once the patching window is closed.
@@ -148,7 +148,7 @@ class PatchGameWindow(QtWidgets.QDialog):
 
         self.progress = Progress()
 
-        logger.info("***  Started  ***")
+        logger.info(self.tr("***  Started  ***"))
         with trio.CancelScope() as self.patching_cancel_scope:
             await patch_game(
                 patch_server_url=self.patch_server_url,
@@ -156,7 +156,7 @@ class PatchGameWindow(QtWidgets.QDialog):
                 config_manager=self.config_manager,
                 progress=self.progress,
             )
-            logger.info("***  Finished  ***")
+            logger.info(self.tr("***  Finished  ***"))
 
         self.reset_buttons()
         # Let user know that patching is finished if the window isn't currently

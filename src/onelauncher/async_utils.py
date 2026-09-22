@@ -74,7 +74,7 @@ class AsyncHelper(QtCore.QObject):
         finished."""
         if isinstance(run_outcome, outcome.Error):
             error = run_outcome.error
-            logger.error("Trio Event loop error", exc_info=error)
+            logger.error(self.tr("Trio Event loop error"), exc_info=error)
 
         if qapp := QtCore.QCoreApplication.instance():
             qapp.exit()

@@ -68,19 +68,37 @@ def install_ui_translator(locale: OneLauncherLocale) -> bool:
         if translator.load(str(file)):
             QtCore.QCoreApplication.installTranslator(translator)
             _active_translators.append(translator)
-            logger.debug("Installed Qt translation %s", file.name)
+            logger.debug(
+                QtCore.QCoreApplication.translate(
+                    "i18n", "Installed Qt translation %s"
+                ),
+                file.name,
+            )
 
     app_translation = get_translation_file(locale)
     if not app_translation.exists():
-        logger.debug("There is no UI translation for %s", locale.lang_tag)
+        logger.debug(
+            QtCore.QCoreApplication.translate(
+                "i18n", "There is no UI translation for %s"
+            ),
+            locale.lang_tag,
+        )
         return False
 
     translator = QtCore.QTranslator()
     if not translator.load(str(app_translation)):
-        logger.error("Failed to load UI translation file: %s", app_translation)
+        logger.error(
+            QtCore.QCoreApplication.translate(
+                "i18n", "Failed to load UI translation file: %s"
+            ),
+            app_translation,
+        )
         return False
 
     QtCore.QCoreApplication.installTranslator(translator)
     _active_translators.append(translator)
-    logger.debug("Installed UI translation for %s", locale.lang_tag)
+    logger.debug(
+        QtCore.QCoreApplication.translate("i18n", "Installed UI translation for %s"),
+        locale.lang_tag,
+    )
     return True

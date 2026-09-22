@@ -12,6 +12,7 @@ import attrs
 import httpx
 import trio
 from httpx import HTTPError, HTTPStatusError
+from PySide6 import QtCore
 from xmlschema import XMLSchemaValidationError
 
 from onelauncher.async_utils import for_each_in_stream
@@ -196,10 +197,17 @@ async def _handle_akamai_download_file(
         async with await temp_download_path.open("w"):
             pass
     except PermissionError:
-        logger.exception("Insufficient permissions to patch %s", local_path.name)
+        logger.exception(
+            QtCore.QCoreApplication.translate(
+                "patchGame", "Insufficient permissions to patch %s"
+            ),
+            local_path.name,
+        )
         return
 
-    logger.debug("Downloading %s", download_file)
+    logger.debug(
+        QtCore.QCoreApplication.translate("patchGame", "Downloading %s"), download_file
+    )
 
     url = (
         f"{base_download_url}/{download_file.relative_url}"
@@ -245,9 +253,18 @@ async def _handle_akamai_download_file(
             and e.response.status_code == httpx.codes.NOT_FOUND
         ):
             # Not an error, because there are always some specific files that 404.
-            logger.debug("Download not found: %s", local_path.name, exc_info=True)
+            logger.debug(
+                QtCore.QCoreApplication.translate(
+                    "patchGame", "Download not found: %s"
+                ),
+                local_path.name,
+                exc_info=True,
+            )
         else:
-            logger.exception("Failed to download %s", local_path.name)
+            logger.exception(
+                QtCore.QCoreApplication.translate("patchGame", "Failed to download %s"),
+                local_path.name,
+            )
         progress.progress_items.remove(progress_item)
     else:
         await local_path.unlink(missing_ok=True)
@@ -283,7 +300,11 @@ async def akamai_patching(
         or not game_launcher_config.akamai_download_url
         or not game_launcher_config.game_version
     ):
-        raise AkamaiPatchingError(msg="Failed to load game launcher network config")
+        raise AkamaiPatchingError(
+            msg=QtCore.QCoreApplication.translate(
+                "patchGame", "Failed to load game launcher network config"
+            )
+        )
 
     file_list: tuple[PatchingDownloadFile | SplashscreenDownloadFile, ...]
 
@@ -305,10 +326,16 @@ async def akamai_patching(
         ).download_files
     except HTTPError as e:
         raise AkamaiPatchingError(
-            msg="Network error while downloading patching file list"
+            msg=QtCore.QCoreApplication.translate(
+                "patchGame", "Network error while downloading patching file list"
+            )
         ) from e
     except XMLSchemaValidationError as e:
-        raise AkamaiPatchingError(msg="Error parsing patching file list") from e
+        raise AkamaiPatchingError(
+            msg=QtCore.QCoreApplication.translate(
+                "patchGame", "Error parsing patching file list"
+            )
+        ) from e
 
     # Add splashscreens to file list.
     if game_launcher_config.download_files_list_url:
@@ -322,11 +349,24 @@ async def akamai_patching(
                 ).download_files
             )
         except HTTPError:
-            logger.exception("Network error while downloading splashscreens file list")
+            logger.exception(
+                QtCore.QCoreApplication.translate(
+                    "patchGame",
+                    "Network error while downloading splashscreens file list",
+                )
+            )
         except XMLSchemaValidationError:
-            logger.exception("Error parsing splashscreens file list")
+            logger.exception(
+                QtCore.QCoreApplication.translate(
+                    "patchGame", "Error parsing splashscreens file list"
+                )
+            )
     else:
-        logger.error("Game launcher config is missing splashscreens update URL")
+        logger.error(
+            QtCore.QCoreApplication.translate(
+                "patchGame", "Game launcher config is missing splashscreens update URL"
+            )
+        )
 
     # Directory where files will be downloaded before being moved to their final
     # location. This is the same directory that the official launcher uses. A normal
@@ -359,7 +399,10 @@ async def patch_game(
 
     patch_client = game_config.game_directory / game_config.patch_client_filename
     if not patch_client.exists():
-        logger.error("Patch client %s not found", game_config.patch_client_filename)
+        logger.error(
+            QtCore.QCoreApplication.translate("patchGame", "Patch client %s not found"),
+            game_config.patch_client_filename,
+        )
         return
 
     command: tuple[str | Path, ...] = (
@@ -394,7 +437,7 @@ async def patch_game(
         )
     except AkamaiPatchingError as e:
         logger.exception(e.msg)
-        logger.info("Skipping phase")
+        logger.info(QtCore.QCoreApplication.translate("patchGame", "Skipping phase"))
 
     try:
         async with trio.open_nursery() as nursery:
@@ -455,10 +498,18 @@ async def patch_game(
                 )
                 if await process.wait() != 0:
                     logger.debug(
-                        "Patching process failed with %s exit status",
+                        QtCore.QCoreApplication.translate(
+                            "patchGame", "Patching process failed with %s exit status"
+                        ),
                         process.returncode,
                     )
-                    logger.error("Patching failed")
+                    logger.error(
+                        QtCore.QCoreApplication.translate(
+                            "patchGame", "Patching failed"
+                        )
+                    )
                     return
     except* OSError:
-        logger.exception("Failed to start patching")
+        logger.exception(
+            QtCore.QCoreApplication.translate("patchGame", "Failed to start patching")
+        )

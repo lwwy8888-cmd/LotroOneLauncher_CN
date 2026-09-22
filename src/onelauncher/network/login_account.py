@@ -2,6 +2,7 @@ from typing import Any, Self
 
 import attrs
 import zeep.exceptions
+from PySide6 import QtCore
 
 from .soap import GLSServiceError, get_soap_client
 
@@ -142,12 +143,22 @@ async def login_account(
     except zeep.exceptions.Fault as e:
         if "no subscriber formal entity was found" in e.message.lower():
             raise WrongUsernameOrPasswordError(
-                msg="Username or password is incorrect"
+                msg=QtCore.QCoreApplication.translate(
+                    "login_account", "Username or password is incorrect"
+                )
             ) from e
         elif "user name is too short" in e.message.lower():
-            raise WrongUsernameOrPasswordError(msg="Username is too short") from e
+            raise WrongUsernameOrPasswordError(
+                msg=QtCore.QCoreApplication.translate(
+                    "login_account", "Username is too short"
+                )
+            ) from e
         elif "password is too short" in e.message.lower():
-            raise WrongUsernameOrPasswordError(msg="Password is too short") from e
+            raise WrongUsernameOrPasswordError(
+                msg=QtCore.QCoreApplication.translate(
+                    "login_account", "Password is too short"
+                )
+            ) from e
         else:
             raise GLSServiceError("") from e
     except zeep.exceptions.Error as e:

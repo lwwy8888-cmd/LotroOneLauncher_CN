@@ -13,6 +13,7 @@ from types import MappingProxyType
 
 import attrs
 import trio
+from PySide6 import QtCore
 
 from onelauncher.async_utils import for_each_in_stream
 from onelauncher.config_manager import ConfigManager
@@ -158,7 +159,12 @@ async def get_launch_args(
         arg.replace(account_number, "******").replace(ticket, "******")
         for arg in launch_args
     )
-    logger.debug("Game launch arguments generated: %s", redacted_launch_args)
+    logger.debug(
+        QtCore.QCoreApplication.translate(
+            "startGame", "Game launch arguments generated: %s"
+        ),
+        redacted_launch_args,
+    )
     return tuple(launch_args)
 
 

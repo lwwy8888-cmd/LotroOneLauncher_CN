@@ -7,6 +7,7 @@ from typing import Self, override
 
 import attrs
 import babel
+from PySide6 import QtCore
 from PySide6.QtCore import QLocale
 
 logger = logging.getLogger(__name__)
@@ -166,7 +167,10 @@ def get_game_dir_available_locales(game_dir: Path) -> list[OneLauncherLocale]:
             )
         except KeyError:
             logger.error(
-                "%s does not match a game language name for an available locale.",
+                QtCore.QCoreApplication.translate(
+                    "resources",
+                    "%s does not match a game language name for an available locale.",
+                ),
                 game_language_name,
             )
 

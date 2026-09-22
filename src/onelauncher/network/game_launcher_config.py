@@ -6,6 +6,7 @@ import attrs
 from asyncache import cached
 from cachetools import TTLCache
 from httpx import HTTPError
+from PySide6 import QtCore
 
 from ..game_config import ClientType, GameConfig
 from ..official_clients import (
@@ -157,7 +158,12 @@ class GameLauncherConfig:
                 return None
             return await cls.from_url(game_services_info.launcher_config_url)
         except (HTTPError, GameLauncherConfigParseError):
-            logger.exception("Loading `GameLauncherConfig` from `GameConfig` failed")
+            logger.exception(
+                QtCore.QCoreApplication.translate(
+                    "game_launcher_config",
+                    "Loading `GameLauncherConfig` from `GameConfig` failed",
+                )
+            )
             return None
 
     @staticmethod
@@ -222,7 +228,10 @@ class GameLauncherConfig:
                 keys.pop(new_client_type_index)
 
             logger.warning(
-                "No client_filename for %s found. Returning filename for %s",
+                QtCore.QCoreApplication.translate(
+                    "gameLauncherConfig",
+                    "No client_filename for %s found. Returning filename for %s",
+                ),
                 preferred_client_type,
                 new_client_type,
             )

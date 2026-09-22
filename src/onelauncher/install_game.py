@@ -10,6 +10,7 @@ from typing import Final
 import attrs
 import trio
 from httpx import HTTPError
+from PySide6 import QtCore
 
 from .addons.config import AddonsConfigSection
 from .async_utils import TemporaryDirectoryAsyncPath
@@ -130,7 +131,9 @@ def validate_user_provided_install_dir(
         install_dir = CaseInsensitiveAbsolutePath(install_dir_string)
     except RelativePathError as e:
         raise InstallDirValidationError(
-            msg="Install directory cannot be a relative path"
+            msg=QtCore.QCoreApplication.translate(
+                "installGame", "Install directory cannot be a relative path"
+            )
         ) from e
 
     # Default install directory as gotten from `get_default_game_config` won't exist,
@@ -142,23 +145,43 @@ def validate_user_provided_install_dir(
         file = install_dir.open()
         file.close()
     except PermissionError as e:
-        raise InstallDirValidationError(msg="Install directory must be readable") from e
+        raise InstallDirValidationError(
+            msg=QtCore.QCoreApplication.translate(
+                "installGame", "Install directory must be readable"
+            )
+        ) from e
     except FileNotFoundError as e:
-        raise InstallDirValidationError(msg="Install directory must exist") from e
+        raise InstallDirValidationError(
+            msg=QtCore.QCoreApplication.translate(
+                "installGame", "Install directory must exist"
+            )
+        ) from e
     except IsADirectoryError:
         pass
     else:
-        raise InstallDirValidationError(msg="Install directory must be a directory")
+        raise InstallDirValidationError(
+            msg=QtCore.QCoreApplication.translate(
+                "installGame", "Install directory must be a directory"
+            )
+        )
 
     if next(install_dir.iterdir(), None):
-        raise InstallDirValidationError(msg="Install directory must be empty")
+        raise InstallDirValidationError(
+            msg=QtCore.QCoreApplication.translate(
+                "installGame", "Install directory must be empty"
+            )
+        )
 
     try:
         test_file = install_dir / "tmp_test_if_dir_writable"
         test_file.write_text("(:")
         test_file.unlink()
     except OSError as e:
-        raise InstallDirValidationError(msg="Install directory must be writable") from e
+        raise InstallDirValidationError(
+            msg=QtCore.QCoreApplication.translate(
+                "installGame", "Install directory must be writable"
+            )
+        ) from e
 
     if install_dir.is_relative_to(config_manager.games_dir):
         raise InstallDirValidationError(
@@ -210,7 +233,12 @@ async def install_game(
         InstallGameError: Error while installing the game. Show `.msg` to the user.
     """
     try:
-        logger.info("Downloading %s game installer", installer.name)
+        logger.info(
+            QtCore.QCoreApplication.translate(
+                "installGame", "Downloading %s game installer"
+            ),
+            installer.name,
+        )
         progress.unit_type = "byte"
         download_progress_item = ProgressItem()
         progress.progress_items.append(download_progress_item)
@@ -232,7 +260,12 @@ async def install_game(
                 bytes_currently_downloaded = response.num_bytes_downloaded
                 await installer_file.write(chunk)
 
-            logger.info("Extracting %s game installer", installer.name)
+            logger.info(
+                QtCore.QCoreApplication.translate(
+                    "installGame", "Extracting %s game installer"
+                ),
+                installer.name,
+            )
             progress.reset()
             try:
                 completed_process = await trio.run_process(
@@ -255,9 +288,16 @@ async def install_game(
             except CalledProcessError as e:
                 e.add_note("stdout: \n" + e.stdout.decode().strip())
                 e.add_note("stderr: \n" + e.stderr.decode().strip())
-                raise InstallGameError(msg="Installer extraction failed") from e
+                raise InstallGameError(
+                    msg=QtCore.QCoreApplication.translate(
+                        "installGame", "Installer extraction failed"
+                    )
+                ) from e
             logger.debug(
-                "innoextract stdout: \n %s", completed_process.stdout.decode().strip()
+                QtCore.QCoreApplication.translate(
+                    "installGame", "innoextract stdout: \n %s"
+                ),
+                completed_process.stdout.decode().strip(),
             )
 
             # Verify extracted game dir.
@@ -267,7 +307,10 @@ async def install_game(
                 )
             except InvalidGameDirError as e:
                 raise InstallGameError(
-                    msg="Installer extraction did not create a valid game directory"
+                    msg=QtCore.QCoreApplication.translate(
+                        "installGame",
+                        "Installer extraction did not create a valid game directory",
+                    )
                 ) from e
 
             # Move the extracted game directory to `install_dir`.
@@ -276,4 +319,8 @@ async def install_game(
             install_dir.parent.mkdir(parents=True, exist_ok=True)
             shutil.move(extract_dir / "app", install_dir)
     except HTTPError as e:
-        raise InstallGameError(msg="Failed to download the game installer") from e
+        raise InstallGameError(
+            msg=QtCore.QCoreApplication.translate(
+                "installGame", "Failed to download the game installer"
+            )
+        ) from e

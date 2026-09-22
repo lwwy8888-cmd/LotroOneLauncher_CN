@@ -14,6 +14,7 @@ import tomlkit
 from cattrs.preconf.tomlkit import make_converter
 from keyring.errors import KeyringLocked, NoKeyringError
 from packaging.version import InvalidVersion, Version
+from PySide6 import QtCore
 from tomlkit.items import Comment, Table, Whitespace
 
 from onelauncher.logs import LogLevel
@@ -264,7 +265,9 @@ def read_config_file[T: Config](
         )
     except tomlkit.exceptions.ParseError as e:
         raise ConfigFileParseError(
-            msg="Error parsing config TOML",
+            msg=QtCore.QCoreApplication.translate(
+                "ConfigManager", "Error parsing config TOML"
+            ),
             config_class=config_class,
             config_file_path=config_file_path,
         ) from e
@@ -272,7 +275,9 @@ def read_config_file[T: Config](
     config_file_version = get_toml_doc_config_version(unstructured_config)
     if config_file_version is None:
         raise ConfigFileParseError(
-            msg="Config has no version specified.",
+            msg=QtCore.QCoreApplication.translate(
+                "ConfigManager", "Config has no version specified."
+            ),
             config_class=config_class,
             config_file_path=config_file_path,
         )
@@ -293,7 +298,9 @@ def read_config_file[T: Config](
         return get_converter().structure(preconverted_config, config_class)
     except cattrs.ClassValidationError as e:
         raise ConfigFileParseError(
-            msg="Error structuring config",
+            msg=QtCore.QCoreApplication.translate(
+                "ConfigManager", "Error structuring config"
+            ),
             config_class=config_class,
             config_file_path=config_file_path,
         ) from e

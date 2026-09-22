@@ -383,7 +383,7 @@ class SettingsWindow(FramelessQDialogWithStylePreview):
         process.setProgram(str(command[0]))
         process.setArguments([str(arg) for arg in command[1:]])
         process.setWorkingDirectory(str(game_config.game_directory))
-        logger.info("Starting standard game launcher: %s", launcher_path)
+        logger.info(self.tr("Starting standard game launcher: %s"), launcher_path)
         process.startDetached()
 
     def browse_for_directory(
