@@ -969,7 +969,9 @@ class MainWindow(FramelessQMainWindowWithStylePreview):
 
         # Set news feed to say "Loading ..." until it is replaced by the news.
         self.ui.txtFeed.setHtml(
-            '<html><body><p style="text-align:center;">Loading ...</p></body></html>'
+            self.tr(
+                '<html><body><p style="text-align:center;">Loading ...</p></body></html>'
+            )
         )
 
         logger.info(self.tr("Initializing, please wait..."))

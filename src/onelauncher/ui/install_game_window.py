@@ -70,7 +70,7 @@ class InstallGameWindow(FramelessQDialogWithStylePreview):
         self.ui.selectInstallDirButton.clicked.connect(self.browse_for_install_dir)
 
         self.install_button = self.ui.buttonBox.addButton(
-            "Install Game", QtWidgets.QDialogButtonBox.ButtonRole.AcceptRole
+            self.tr("Install Game"), QtWidgets.QDialogButtonBox.ButtonRole.AcceptRole
         )
         self.install_button.clicked.connect(
             lambda: self.nursery.start_soon(self.install_game)

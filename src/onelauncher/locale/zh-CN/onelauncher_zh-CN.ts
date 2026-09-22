@@ -190,6 +190,11 @@
     <context>
         <name>InstallGameWindow</name>
         <message>
+            <location filename="../../ui/install_game_window.py" line="73" />
+            <source>Install Game</source>
+            <translation>安装游戏</translation>
+        </message>
+        <message>
             <location filename="../../ui/install_game_window.py" line="88" />
             <source>innoextract not found. Cannot make a new game install.</source>
             <translation>未找到 innoextract，无法新建游戏安装。</translation>
@@ -373,57 +378,62 @@
             <translation>解析本地启动器配置出错</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="975" />
+            <location filename="../../main_window.py" line="973" />
+            <source>&lt;html&gt;&lt;body&gt;&lt;p style="text-align:center;"&gt;Loading ...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+            <translation>&lt;html&gt;&lt;body&gt;&lt;p style="text-align:center;"&gt;正在加载……&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        </message>
+        <message>
+            <location filename="../../main_window.py" line="977" />
             <source>Initializing, please wait...</source>
             <translation>正在初始化，请稍候……</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="992" />
+            <location filename="../../main_window.py" line="994" />
             <source>No system keyring found. Password and subscription saving will fail.</source>
             <translation>未找到系统钥匙串，将无法保存密码和订阅。</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="999" />
+            <location filename="../../main_window.py" line="1001" />
             <source>Failed to unlock system keyring. Password and subscription saving will fail.</source>
             <translation>解锁系统钥匙串失败，将无法保存密码和订阅。</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1028" />
+            <location filename="../../main_window.py" line="1030" />
             <source>Network error while fetching game services info</source>
             <translation>获取游戏服务信息时发生网络错误</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1033" />
+            <location filename="../../main_window.py" line="1035" />
             <source>Non-network error with GLS datacenter service. Please report this issue, if it continues.</source>
             <translation>GLS 数据中心服务出现非网络错误。如果持续出现，请反馈此问题。</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1039" />
+            <location filename="../../main_window.py" line="1041" />
             <source>Fetched game services info</source>
             <translation>已获取游戏服务信息</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1065" />
+            <location filename="../../main_window.py" line="1067" />
             <source>World list obtained</source>
             <translation>已获取服务器列表</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1074" />
+            <location filename="../../main_window.py" line="1076" />
             <source>Game launcher configuration read</source>
             <translation>已读取游戏启动器配置</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1078" />
+            <location filename="../../main_window.py" line="1080" />
             <source>Network error while retrieving game launcher config</source>
             <translation>获取游戏启动器配置时发生网络错误</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1084" />
+            <location filename="../../main_window.py" line="1086" />
             <source>Game launcher config has incompatible format. Please report this issue if using a supported game server</source>
             <translation>游戏启动器配置格式不兼容。如果你使用的是受支持的服务器，请反馈此问题。</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1103" />
+            <location filename="../../main_window.py" line="1105" />
             <source>Network error while downloading newsfeed</source>
             <translation>下载新闻源时发生网络错误</translation>
         </message>
@@ -600,22 +610,52 @@
             <translation>下载“{url}”时出错，请检查网络连接。</translation>
         </message>
         <message>
-            <location filename="../../wine_environment.py" line="310" />
+            <location filename="../../wine_environment.py" line="190" />
+            <source>Downloading WINE...</source>
+            <translation>正在下载 WINE……</translation>
+        </message>
+        <message>
+            <location filename="../../wine_environment.py" line="201" />
+            <source>Extracting WINE...</source>
+            <translation>正在解压 WINE……</translation>
+        </message>
+        <message>
+            <location filename="../../wine_environment.py" line="264" />
+            <source>Downloading DXVK...</source>
+            <translation>正在下载 DXVK……</translation>
+        </message>
+        <message>
+            <location filename="../../wine_environment.py" line="272" />
+            <source>Extracting DXVK...</source>
+            <translation>正在解压 DXVK……</translation>
+        </message>
+        <message>
+            <location filename="../../wine_environment.py" line="322" />
             <source>Downloading DirectX...</source>
             <translation>正在下载 DirectX……</translation>
         </message>
         <message>
-            <location filename="../../wine_environment.py" line="322" />
+            <location filename="../../wine_environment.py" line="334" />
             <source>There was a hash error downloading DirectX. You may want to retry.</source>
             <translation>DirectX 下载校验失败，建议重试。</translation>
         </message>
         <message>
-            <location filename="../../wine_environment.py" line="332" />
+            <location filename="../../wine_environment.py" line="344" />
             <source>Extracting DirectX...</source>
             <translation>正在解压 DirectX……</translation>
         </message>
         <message>
-            <location filename="../../wine_environment.py" line="455" />
+            <location filename="../../wine_environment.py" line="401" />
+            <source>Downloading WINE dependencies...</source>
+            <translation>正在下载 WINE 依赖……</translation>
+        </message>
+        <message>
+            <location filename="../../wine_environment.py" line="414" />
+            <source>Extracting WINE dependencies...</source>
+            <translation>正在解压 WINE 依赖……</translation>
+        </message>
+        <message>
+            <location filename="../../wine_environment.py" line="475" />
             <source>Attempt to use WINE on Windows. No changes were made.</source>
             <translation>尝试在 Windows 上使用 WINE。未做任何更改。</translation>
         </message>
@@ -964,12 +1004,17 @@
     <context>
         <name>main</name>
         <message>
-            <location filename="../../main.py" line="105" />
+            <location filename="../../main.py" line="41" />
+            <source>Load Backup</source>
+            <translation>加载备份</translation>
+        </message>
+        <message>
+            <location filename="../../main.py" line="108" />
             <source>No Games Found</source>
             <translation>未找到游戏</translation>
         </message>
         <message>
-            <location filename="../../main.py" line="106" />
+            <location filename="../../main.py" line="109" />
             <source>No games have been registered with {title}.
  Opening games management wizard.</source>
             <translation>尚未在 {title} 中注册任何游戏。将打开游戏管理向导。</translation>
@@ -1120,27 +1165,27 @@
             <translation>龙与地下城 Online</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1117" />
+            <location filename="../../main_window.py" line="1119" />
             <source>No updates URL available</source>
             <translation>没有可用的更新地址</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1122" />
+            <location filename="../../main_window.py" line="1124" />
             <source>Repository URL is not at github.com. Update checking is currently only supported for github.com</source>
             <translation>仓库地址不在 github.com 上。目前仅支持检查 github.com 上的更新。</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1141" />
+            <location filename="../../main_window.py" line="1143" />
             <source>Network error while checking for %s updates</source>
             <translation>检查 %s 更新时发生网络错误</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1166" />
+            <location filename="../../main_window.py" line="1168" />
             <source>There is a new version of {title} available! {link}</source>
             <translation>发现 {title} 新版本！{link}</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1176" />
+            <location filename="../../main_window.py" line="1178" />
             <source>%s is up to date</source>
             <translation>%s 已是最新版本</translation>
         </message>

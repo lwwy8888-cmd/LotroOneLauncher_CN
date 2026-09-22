@@ -37,7 +37,10 @@ def show_invalid_config_dialog(
     ui.detailsTextEdit.setPlainText(traceback.format_exc())
 
     if backup_available:
-        ui.buttonBox.addButton("Load Backup", ui.buttonBox.ButtonRole.AcceptRole)
+        ui.buttonBox.addButton(
+            QtCore.QCoreApplication.translate("main", "Load Backup"),
+            ui.buttonBox.ButtonRole.AcceptRole,
+        )
         return dialog.exec() == dialog.DialogCode.Accepted
     else:
         dialog.exec()

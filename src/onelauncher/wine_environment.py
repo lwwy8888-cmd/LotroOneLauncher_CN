@@ -186,7 +186,9 @@ class WineManagement:
         if self.wine_binary_path.exists():
             return
 
-        self.dlgDownloader.setLabelText("Downloading WINE...")
+        self.dlgDownloader.setLabelText(
+            QtCore.QCoreApplication.translate("WineManagement", "Downloading WINE...")
+        )
 
         with TemporaryDirectory() as temp_dir_name:
             download_path = Path(temp_dir_name) / "wine.tar.xz"
@@ -195,7 +197,11 @@ class WineManagement:
                 return
 
             self.dlgDownloader.reset()
-            self.dlgDownloader.setLabelText("Extracting WINE...")
+            self.dlgDownloader.setLabelText(
+                QtCore.QCoreApplication.translate(
+                    "WineManagement", "Extracting WINE..."
+                )
+            )
             self.dlgDownloader.setValue(99)
             self._wine_extractor(download_path)
             self.dlgDownloader.setValue(100)
@@ -254,13 +260,19 @@ class WineManagement:
             self._dxvk_injector()
             return
 
-        self.dlgDownloader.setLabelText("Downloading DXVK...")
+        self.dlgDownloader.setLabelText(
+            QtCore.QCoreApplication.translate("WineManagement", "Downloading DXVK...")
+        )
         with TemporaryDirectory() as temp_dir_name:
             download_path = Path(temp_dir_name) / "dxvk.tar.gz"
 
             if self._downloader(DXVK_URL, download_path):
                 self.dlgDownloader.reset()
-                self.dlgDownloader.setLabelText("Extracting DXVK...")
+                self.dlgDownloader.setLabelText(
+                    QtCore.QCoreApplication.translate(
+                        "WineManagement", "Extracting DXVK..."
+                    )
+                )
                 self.dlgDownloader.setValue(99)
                 self._dxvk_extractor(download_path)
                 self.dlgDownloader.setValue(100)
@@ -385,7 +397,11 @@ class WineManagement:
         if self.latest_sikarugir_frameworks_path.exists():
             return
 
-        self.dlgDownloader.setLabelText("Downloading WINE dependencies...")
+        self.dlgDownloader.setLabelText(
+            QtCore.QCoreApplication.translate(
+                "WineManagement", "Downloading WINE dependencies..."
+            )
+        )
 
         with TemporaryDirectory() as temp_dir_name:
             download_path = Path(temp_dir_name) / "sikarugir_frameworks.tar.xz"
@@ -394,7 +410,11 @@ class WineManagement:
                 return
 
             self.dlgDownloader.reset()
-            self.dlgDownloader.setLabelText("Extracting WINE dependencies...")
+            self.dlgDownloader.setLabelText(
+                QtCore.QCoreApplication.translate(
+                    "WineManagement", "Extracting WINE dependencies..."
+                )
+            )
             self.dlgDownloader.setValue(99)
             self._sikarugir_frameworks_extractor(download_path)
             self.dlgDownloader.setValue(100)

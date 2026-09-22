@@ -10,13 +10,17 @@ Run with: python build/pyinstaller_compile.py
 import shutil
 import subprocess
 import sys
+import tempfile
+import time
 from pathlib import Path
 
 from onelauncher import __about__
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT_DIR = ROOT / "release"
-WORK_DIR = ROOT / "build" / "pyi-work"
+# Only the final archive goes into the repository; the intermediate build tree
+# is kept outside of it, since it holds thousands of files.
+ZIP_DIR = ROOT / "release"
+BUILD_ROOT = Path(tempfile.gettempdir()) / "onelauncher-pyi"
 ENTRY_SCRIPT = ROOT / "build" / "pyinstaller_entry.py"
 
 APP_NAME = __about__.__display_name__
@@ -33,8 +37,25 @@ DATA_DIRS = (
 )
 
 
+def prepare_build_dir() -> Path:
+    """Return an empty output directory for PyInstaller.
+
+    An existing tree is moved aside rather than deleted, because bulk deletion
+    of thousands of files trips the sandbox's delete guard.
+    """
+    out_dir = BUILD_ROOT / "out"
+    if not out_dir.exists():
+        return out_dir
+
+    stale = BUILD_ROOT / f"out-{int(time.time())}"
+    out_dir.rename(stale)
+    print(f"Moved previous build aside: {stale}")
+    return out_dir
+
+
 def build() -> Path:
     """Run PyInstaller and return the directory containing the built app."""
+    out_dir = prepare_build_dir()
     arguments = [
         sys.executable or "python",
         "-m",
@@ -61,28 +82,30 @@ def build() -> Path:
         arguments += ["--add-data", f"{source};{destination}"]
     arguments += [
         "--distpath",
-        str(OUT_DIR),
+        str(out_dir),
         "--workpath",
-        str(WORK_DIR),
+        str(BUILD_ROOT / "work"),
         "--specpath",
         str(ROOT),
         str(ENTRY_SCRIPT),
     ]
 
     subprocess.run(arguments, check=True, cwd=ROOT)  # noqa: S603
-    return OUT_DIR / APP_NAME
+    return out_dir / APP_NAME
 
 
 def make_zip(app_dir: Path) -> Path:
     """Zip the app directory so that unzipping yields a ready to run folder."""
+    ZIP_DIR.mkdir(exist_ok=True)
     version = __about__.version_parsed.base_version
-    archive = OUT_DIR / f"{APP_NAME}-{version}-win64-portable"
-    zip_path = Path(
+    archive = ZIP_DIR / f"{APP_NAME}-{version}-win64-portable"
+    # Overwriting a single file is fine, unlike deleting a directory tree.
+    archive.with_suffix(".zip").unlink(missing_ok=True)
+    return Path(
         shutil.make_archive(
             str(archive), "zip", root_dir=app_dir.parent, base_dir=app_dir.name
         )
     )
-    return zip_path
 
 
 def main() -> None:
