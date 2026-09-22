@@ -33,7 +33,7 @@ from pathlib import Path
 import qtawesome
 from PySide6 import QtCore, QtGui, QtWidgets
 
-from onelauncher.__about__ import __title__, __version__
+from onelauncher.__about__ import __display_name__, __title__, __version__
 from onelauncher.resources import data_dir
 
 from .style import ApplicationStyle
@@ -49,7 +49,7 @@ def _setup_qapplication() -> QtWidgets.QApplication:
     # Will be quit after Trio event loop finishes
     application.setQuitOnLastWindowClosed(False)
     application.setApplicationName(__title__)
-    application.setApplicationDisplayName(__title__)
+    application.setApplicationDisplayName(__display_name__)
     application.setApplicationVersion(__version__)
     application.setWindowIcon(
         QtGui.QIcon(
