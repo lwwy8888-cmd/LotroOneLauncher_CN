@@ -309,9 +309,10 @@ async def akamai_patching(
     file_list: tuple[PatchingDownloadFile | SplashscreenDownloadFile, ...]
 
     # Add patching download files to the file list.
-    language = (
+    patch_locale = (
         game_config.locale or config_manager.get_program_config().default_locale
-    ).lang_tag.split("-")[0]
+    )
+    language = patch_locale.resource_language or patch_locale.lang_tag.split("-")[0]
     # `akamai_download_url` ussed HTTP. The domain is a CNAME to an akamai subdomain.
     # The certificate isn't valid for any of the domains involved, so this isn't being
     # coerced to use HTTPS.

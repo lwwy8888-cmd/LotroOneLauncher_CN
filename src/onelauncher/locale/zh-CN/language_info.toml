@@ -8,6 +8,7 @@ display_name = "简体中文"
 # file in the game directory.
 game_language_name = "Chinese"
 
-# Language code used in the game's newsfeed URL. The game has no Simplified
-# Chinese newsfeed, so English is used instead of "zh".
-newsfeed_language = "en"
+# Language code used for game server resources: newsfeed, patch file lists,
+# and banner images. The game has no Simplified Chinese resources, so English
+# is used instead of "zh".
+resource_language = "en"

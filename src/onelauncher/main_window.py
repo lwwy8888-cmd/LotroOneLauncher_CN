@@ -846,8 +846,11 @@ class MainWindow(FramelessQMainWindowWithStylePreview):
         game_config = self.config_manager.get_game_config(self.game_id)
         ui_locale = self.config_manager.get_ui_locale(self.game_id)
 
+        ui_resource_language = (
+            ui_locale.resource_language or ui_locale.lang_tag.split("-")[0]
+        )
         game_dir_banner_override_path = (
-            game_config.game_directory / ui_locale.lang_tag.split("-")[0] / "banner.png"
+            game_config.game_directory / ui_resource_language / "banner.png"
         )
         if game_dir_banner_override_path.exists():
             banner_pixmap = QtGui.QPixmap(str(game_dir_banner_override_path))
