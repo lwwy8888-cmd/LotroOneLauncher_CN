@@ -7,7 +7,7 @@
 
 ![OneLauncher window examples](https://i.imgur.com/UtCIHSl.png)
 
-[![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/junestepp/onelauncher?include_prereleases)](https://Github.com/JuneStepp/OneLauncher/releases/latest) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/lwwy8888-cmd/LotroOneLauncher_CN?include_prereleases)](https://github.com/lwwy8888-cmd/LotroOneLauncher_CN/releases/latest) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 一个为 [LOTRO（指环王 Online）](https://www.lotro.com/) 和 [DDO（龙与地下城 Online）](https://www.ddo.com/) 打造的功能增强启动器，内置插件、皮肤与音乐资源管理器。
 
@@ -23,14 +23,15 @@
 
 ## 安装
 
-获取 OneLauncher 最省事的方式是使用[编译好的发布版](https://Github.com/JuneStepp/OneLauncher/releases/latest)。也可以用 Python 或 Nix 运行。
+本分支提供 **Windows 64 位免安装版**：下载压缩包，解压后直接运行 `LotroOneLauncher_CN.exe` 即可，无需安装程序。
 
-- [最新发布版](https://Github.com/JuneStepp/OneLauncher/releases/latest)
-- [macOS 安装说明](#macos)
+- [直接下载 2.1.3 免安装包](https://github.com/lwwy8888-cmd/LotroOneLauncher_CN/releases/latest/download/LotroOneLauncher_CN-2.1.3-win64-portable.zip)
+- [全部发布版](https://github.com/lwwy8888-cmd/LotroOneLauncher_CN/releases)
 - [系统要求](#系统要求)
 - [从源码运行](CONTRIBUTING.md#development-install)
+- [上游原版（英文，含 macOS 与 Linux 版）](https://github.com/JuneStepp/OneLauncher/releases/latest)
 
-### macOS
+### macOS（上游原版，本分支未提供）
 
 - 下载最新发布版：
     - [arm64（Apple Silicon）](http://github.com/JuneStepp/OneLauncher/releases/latest/download/OneLauncher-macOS-ARM64.zip)

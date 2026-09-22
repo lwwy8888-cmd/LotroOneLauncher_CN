@@ -225,7 +225,11 @@ async def _handle_akamai_download_file(
     try:
         async with (
             get_httpx_client(url).stream(
-                "GET", url, timeout=httpx.Timeout(20, pool=None)
+                "GET",
+                url,
+                # Patch files are large and the download server is often slow,
+                # so allow long gaps between reads.
+                timeout=httpx.Timeout(30, read=120, pool=None),
             ) as response,
             await temp_download_path.open("wb") as temp_download_file,
         ):
