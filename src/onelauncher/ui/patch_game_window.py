@@ -69,7 +69,7 @@ class PatchGameWindow(QtWidgets.QDialog):
 
         self.ui = Ui_patchGameWindow()
         self.ui.setupUi(self)
-        self.setWindowTitle("Patching Output")
+        self.setWindowTitle(self.tr("Patching Output"))
 
         self.ui_logs_handler = ForwardLogsHandler(
             new_log_callback=lambda record: self.ui.txtLog.append(
@@ -85,7 +85,7 @@ class PatchGameWindow(QtWidgets.QDialog):
     def setup_ui(self) -> None:
         self.finished.connect(self.cleanup)
 
-        self.ui.btnStart.setText("Patch")
+        self.ui.btnStart.setText(self.tr("Patch"))
         self.ui.btnStop.clicked.connect(self.btnStopClicked)
         self.ui.btnStart.clicked.connect(lambda: self.nursery.start_soon(self.start))
         self.reset_buttons()
@@ -115,7 +115,7 @@ class PatchGameWindow(QtWidgets.QDialog):
 
     def reset_buttons(self) -> None:
         self.patching_finished = True
-        self.ui.btnStop.setText("Close")
+        self.ui.btnStop.setText(self.tr("Close"))
         self.ui.btnStart.setEnabled(True)
 
         self.progress = None
@@ -144,7 +144,7 @@ class PatchGameWindow(QtWidgets.QDialog):
     async def start(self) -> None:
         self.patching_finished = False
         self.ui.btnStart.setEnabled(False)
-        self.ui.btnStop.setText("Abort")
+        self.ui.btnStop.setText(self.tr("Abort"))
 
         self.progress = Progress()
 

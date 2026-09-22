@@ -35,7 +35,7 @@ class ProgramConfig(Config):
         help="Default language for games and UI",
     )
     always_use_default_locale_for_ui: bool = config_field(
-        default=False, help="Use default language for UI regardless of game language"
+        default=True, help="Use default language for UI regardless of game language"
     )
     games_sorting_mode: GamesSortingMode = config_field(
         default=GamesSortingMode.PRIORITY, help="Order to show games in UI"

@@ -163,8 +163,11 @@ class WineManagement:
         except (URLError, HTTPError):
             logger.exception("")
             show_warning_message(
-                f"There was an error downloading '{url}'. "
-                "You may want to check your network connection.",
+                QtCore.QCoreApplication.translate(
+                    "WineManagement",
+                    "There was an error downloading '{url}'. "
+                    "You may want to check your network connection.",
+                ).format(url=url),
                 get_qapp().activeWindow(),
             )
             return False
@@ -303,7 +306,11 @@ class WineManagement:
             self._d3d_extras_injector()
             return
 
-        self.dlgDownloader.setLabelText("Downloading DirectX...")
+        self.dlgDownloader.setLabelText(
+            QtCore.QCoreApplication.translate(
+                "WineManagement", "Downloading DirectX..."
+            )
+        )
         with TemporaryDirectory() as temp_dir_name:
             download_path = Path(temp_dir_name) / "d3d_extras.tar.xz"
 
@@ -312,13 +319,20 @@ class WineManagement:
 
                 if sha256(download_path.read_bytes()).hexdigest() != D3D_EXTRAS_HASH:
                     show_warning_message(
-                        "There was a hash error downloading DirectX. "
-                        "You may want to retry.",
+                        QtCore.QCoreApplication.translate(
+                            "WineManagement",
+                            "There was a hash error downloading DirectX. "
+                            "You may want to retry.",
+                        ),
                         get_qapp().activeWindow(),
                     )
                     return
 
-                self.dlgDownloader.setLabelText("Extracting DirectX...")
+                self.dlgDownloader.setLabelText(
+                    QtCore.QCoreApplication.translate(
+                        "WineManagement", "Extracting DirectX..."
+                    )
+                )
                 self.dlgDownloader.setValue(99)
                 self._d3d_extras_extractor(download_path)
                 self.dlgDownloader.setValue(100)

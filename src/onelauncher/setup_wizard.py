@@ -126,7 +126,7 @@ class SetupWizard(QtWidgets.QWizard):
 
         self.ui = Ui_setupWizardWindow()
         self.ui.setupUi(self)
-        self.setWindowTitle("Setup Wizard")
+        self.setWindowTitle(self.tr("Setup Wizard"))
 
         self.migrate_old_config_asked: bool = False
         self.new_install_game_ids: list[GameConfigID] = []
@@ -155,7 +155,7 @@ class SetupWizard(QtWidgets.QWizard):
             # Game installation is disabled on Windows for now pending extra testing.
             # See #313 (internal issue tracker).
             self.ui.installGameButton.hide()
-            self.ui.addExistingGameButton.setText("Add Game")
+            self.ui.addExistingGameButton.setText(self.tr("Add Game"))
         self.ui.upPriorityButton.clicked.connect(self.raise_selected_game_priority)
         self.ui.downPriorityButton.clicked.connect(self.lower_selected_game_priority)
 
@@ -284,14 +284,17 @@ class SetupWizard(QtWidgets.QWizard):
                 messageBox.StandardButton.No | messageBox.StandardButton.Yes
             )
             messageBox.setInformativeText(
-                f"Found configuration data from a previous {__title__} release. Would you like to migrate the data?"
+                self.tr(
+                    "Found configuration data from a previous {title} release. "
+                    "Would you like to migrate the data?"
+                ).format(title=__title__)
             )
             migrate_config = messageBox.exec() == messageBox.StandardButton.Yes
             self.migrate_old_config_asked = True
             if not migrate_config:
                 return True
             messageBox.setInformativeText(
-                "Should the old data be deleted after it's migrated?"
+                self.tr("Should the old data be deleted after it's migrated?")
             )
             delete_old_config = messageBox.exec() == messageBox.StandardButton.Yes
             try:
@@ -302,7 +305,9 @@ class SetupWizard(QtWidgets.QWizard):
             except V1xConfigParseError:
                 logger.exception("")
                 show_warning_message(
-                    message="Error parsing old configuration. No changes were made.",
+                    message=self.tr(
+                        "Error parsing old configuration. No changes were made."
+                    ),
                     parent=self,
                 )
         return True
@@ -331,7 +336,7 @@ class SetupWizard(QtWidgets.QWizard):
         # if no games have been selected.
         if not self.get_selected_game_items():
             show_warning_message(
-                "Please select at least one game folder.",
+                self.tr("Please select at least one game folder."),
                 self,
             )
             return False
@@ -359,7 +364,7 @@ class SetupWizard(QtWidgets.QWizard):
 
     async def initialize_games_selection_page(self) -> None:
         self.ui.gamesDiscoveryStatusLabel.setText(
-            "Searching for existing game directories..."
+            self.tr("Searching for existing game directories...")
         )
         self.ui.gamesDiscoveryStatusLabel.show()
         await trio.to_thread.run_sync(self.find_games)
@@ -537,7 +542,7 @@ class SetupWizard(QtWidgets.QWizard):
 
         game_dir_string = QtWidgets.QFileDialog.getExistingDirectory(
             self,
-            "Select Game Directory",
+            self.tr("Select Game Directory"),
             str(starting_dir),
             options=QtWidgets.QFileDialog.Option.ShowDirsOnly
             | QtWidgets.QFileDialog.Option.DontResolveSymlinks,
@@ -551,7 +556,7 @@ class SetupWizard(QtWidgets.QWizard):
             messageBox.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
             messageBox.setIcon(QtWidgets.QMessageBox.Icon.Information)
             messageBox.setStandardButtons(messageBox.StandardButton.Ok)
-            messageBox.setInformativeText("Directory already added")
+            messageBox.setInformativeText(self.tr("Directory already added"))
             messageBox.exec()
             self.ui.gamesListWidget.setCurrentItem(item)
             return
@@ -564,7 +569,7 @@ class SetupWizard(QtWidgets.QWizard):
                 selected=True,
             )
         except InvalidGameDirError:
-            show_warning_message("Not a valid game installation folder", self)
+            show_warning_message(self.tr("Not a valid game installation folder"), self)
 
     async def install_game(self) -> None:
         install_game_window = InstallGameWindow(config_manager=self.config_manager)

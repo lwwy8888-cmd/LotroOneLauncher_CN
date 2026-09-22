@@ -1,7 +1,7 @@
 import logging
 import traceback
 
-from PySide6 import QtWidgets
+from PySide6 import QtCore, QtWidgets
 
 from .__about__ import __title__
 from .config_manager import (
@@ -11,7 +11,9 @@ from .config_manager import (
     WrongConfigVersionError,
 )
 from .game_config import GameConfigID
+from .i18n import install_ui_translator
 from .main_window import MainWindow
+from .resources import get_default_locale
 from .setup_wizard import SetupWizard
 from .ui.error_message_window_uic import Ui_errorMessageWindow
 from .ui.qtapp import get_qapp
@@ -79,6 +81,14 @@ def verify_configs(config_manager: ConfigManager) -> bool:
 
 
 async def start_ui(config_manager: ConfigManager, game_id: GameConfigID | None) -> None:
+    # The QApplication has to exist before a translator can be installed.
+    _ = get_qapp()
+    install_ui_translator(
+        config_manager.get_program_config().default_locale
+        if config_manager.program_config_path.exists()
+        else get_default_locale()
+    )
+
     # Run setup wizard.
     if not config_manager.program_config_path.exists():
         logger.info("No program config found. Starting setup wizard.")
@@ -95,8 +105,11 @@ async def start_ui(config_manager: ConfigManager, game_id: GameConfigID | None) 
     except NoValidGamesError:
         QtWidgets.QMessageBox.information(
             None,
-            "No Games Found",
-            f"No games have been registered with {__title__}.\n Opening games management wizard.",
+            QtCore.QCoreApplication.translate("main", "No Games Found"),
+            QtCore.QCoreApplication.translate(
+                "main",
+                "No games have been registered with {title}.\n Opening games management wizard.",
+            ).format(title=__title__),
         )
         setup_wizard = SetupWizard(config_manager, game_selection_only=True)
         await setup_wizard.run()

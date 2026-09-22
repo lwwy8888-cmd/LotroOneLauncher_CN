@@ -85,7 +85,8 @@ class InstallGameWindow(FramelessQDialogWithStylePreview):
         except FileNotFoundError:
             logger.exception("")
             show_warning_message(
-                "innoextract not found. Cannot make a new game install.", None
+                self.tr("innoextract not found. Cannot make a new game install."),
+                None,
             )
             self.reject()
             return
@@ -137,7 +138,7 @@ class InstallGameWindow(FramelessQDialogWithStylePreview):
             starting_dir = Path.home()
         install_dir_string = QtWidgets.QFileDialog.getExistingDirectory(
             self,
-            "Select Game Install Directory",
+            self.tr("Select Game Install Directory"),
             str(starting_dir),
             options=QtWidgets.QFileDialog.Option.ShowDirsOnly
             | QtWidgets.QFileDialog.Option.DontResolveSymlinks,

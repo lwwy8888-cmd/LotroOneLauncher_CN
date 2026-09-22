@@ -72,6 +72,7 @@ class Ui_setupWizardWindow(object):
 
         self.alwaysUseDefaultLangForUICheckBox = QCheckBox(self.languageSelectionWizardPage)
         self.alwaysUseDefaultLangForUICheckBox.setObjectName(u"alwaysUseDefaultLangForUICheckBox")
+        self.alwaysUseDefaultLangForUICheckBox.setChecked(True)
 
         self.formLayout.setWidget(0, QFormLayout.ItemRole.FieldRole, self.alwaysUseDefaultLangForUICheckBox)
 

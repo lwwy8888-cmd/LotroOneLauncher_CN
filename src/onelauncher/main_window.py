@@ -237,8 +237,8 @@ class MainWindow(FramelessQMainWindowWithStylePreview):
             get_app_style().update_base_font()
 
     def reset_start_game_button(self) -> None:
-        self.ui.btnStartGame.setText("Play")
-        self.ui.btnStartGame.setToolTip("Start your adventure!")
+        self.ui.btnStartGame.setText(self.tr("Play"))
+        self.ui.btnStartGame.setToolTip(self.tr("Start your adventure!"))
 
     def setup_start_game_button(self) -> None:
         """Set up signals and context menu for `btnStartGame`"""
@@ -326,7 +326,9 @@ class MainWindow(FramelessQMainWindowWithStylePreview):
         else:
             ui.lblRepoWebsite.hide()
         ui.lblCopyright.setText(__about__.__copyright__)
-        ui.lblVersion.setText(f"<b>Version:</b> {__about__.__version__}")
+        ui.lblVersion.setText(
+            self.tr("<b>Version:</b> {version}").format(version=__about__.__version__)
+        )
         ui.lblCopyrightHistory.setText(__about__.__copyright_history__)
 
         about_window.exec()
@@ -737,8 +739,8 @@ class MainWindow(FramelessQMainWindowWithStylePreview):
 
         self.run_startup_scripts()
         logger.info("Starting game")
-        self.ui.btnStartGame.setText("Abort")
-        self.ui.btnStartGame.setToolTip("Abort running game")
+        self.ui.btnStartGame.setText(self.tr("Abort"))
+        self.ui.btnStartGame.setToolTip(self.tr("Abort running game"))
         self.ui.btnSwitchGame.setEnabled(False)
         self.ui.actionPatch.setEnabled(False)
         self.ui.btnOptions.setEnabled(False)
@@ -1116,7 +1118,10 @@ async def check_for_update() -> None:
             f"<span>{name}</span></a></p></body></html>"
         )
         messageBox.setInformativeText(
-            f"There is a new version of {__about__.__title__} available! {centered_href}"
+            QtCore.QCoreApplication.translate(
+                "mainWindow",
+                "There is a new version of {title} available! {link}",
+            ).format(title=__about__.__title__, link=centered_href)
         )
         messageBox.setDetailedText(description)
         show_message_box_details_as_markdown(messageBox)

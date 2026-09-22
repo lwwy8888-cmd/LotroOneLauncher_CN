@@ -226,7 +226,9 @@ class AddonManagerWindow(QWidgetWithStylePreview):
 
         game_config = self.config_manager.get_game_config(self.game_id)
 
-        self.setWindowTitle(f"Addons Manager - {game_config.name}")
+        self.setWindowTitle(
+            self.tr("Addons Manager - {name}").format(name=game_config.name)
+        )
 
         color_scheme_changed = get_qapp().styleHints().colorSchemeChanged
 
@@ -714,7 +716,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
 
         file_names = QtWidgets.QFileDialog.getOpenFileNames(
             self,
-            "Addon Files/Archives",
+            self.tr("Addon Files/Archives"),
             str(Path("~").expanduser()),
             addon_formats,
         )
@@ -1528,12 +1530,13 @@ class AddonManagerWindow(QWidgetWithStylePreview):
         if addons and details:
             num_depends = len(details.split("\n")) - 1
             if num_depends == 1:
-                plural, plural1 = "this ", " addon?"
+                text = self.tr(
+                    "Are you sure you want to remove this {count} addon?"
+                ).format(count=len(addons))
             else:
-                plural, plural1 = "these ", " addons?"
-            text = (
-                "Are you sure you want to remove " + plural + str(len(addons)) + plural1
-            )
+                text = self.tr(
+                    "Are you sure you want to remove these {count} addons?"
+                ).format(count=len(addons))
             if self.confirmationPrompt(text, details):
                 return True, addons
             else:
@@ -1722,14 +1725,14 @@ class AddonManagerWindow(QWidgetWithStylePreview):
 
         if details:
             num_depends = len(details.split("\n")) - 1
-            plural = " addon depends" if num_depends == 1 else " addons deppend"
-            text = (
-                str(num_depends)
-                + plural
-                + " on "
-                + addon[2]
-                + ". Are you sure you want to remove it?"
-            )
+            if num_depends == 1:
+                text = self.tr(
+                    "{count} addon depends on {name}. Are you sure you want to remove it?"
+                ).format(count=num_depends, name=addon[2])
+            else:
+                text = self.tr(
+                    "{count} addons depend on {name}. Are you sure you want to remove it?"
+                ).format(count=num_depends, name=addon[2])
             return self.confirmationPrompt(text, details)
         else:
             return True
@@ -1798,10 +1801,10 @@ class AddonManagerWindow(QWidgetWithStylePreview):
         index = self.ui.tabBarSource.currentIndex()
         if self.SOURCE_TAB_NAMES[index] == "Installed":
             self.ui.btnAddons.setIcon(qtawesome.icon("fa5s.minus"))
-            self.ui.btnAddons.setToolTip("Remove addons")
+            self.ui.btnAddons.setToolTip(self.tr("Remove addons"))
         elif self.SOURCE_TAB_NAMES[index] == "Find More":
             self.ui.btnAddons.setIcon(qtawesome.icon("fa5s.plus"))
-            self.ui.btnAddons.setToolTip("Install addons")
+            self.ui.btnAddons.setToolTip(self.tr("Install addons"))
 
     def tabBarIndexChanged(self, index: int) -> None:
         self.update_btn_addons()
@@ -2140,7 +2143,8 @@ class AddonManagerWindow(QWidgetWithStylePreview):
             return
 
         if self.confirmationPrompt(
-            text="Are you sure you want to uninstall this addon?", details=addon.name
+            text=self.tr("Are you sure you want to uninstall this addon?"),
+            details=addon.name,
         ):
             uninstall_function = self.getUninstallFunctionFromTable(table)
 
@@ -2564,9 +2568,11 @@ class AddonManagerWindow(QWidgetWithStylePreview):
             script_contents = (self.data_folder / script).open().read()
 
             if self.confirmationPrompt(
-                f"{addon_name} is requesting to run a Python script at every game launch."
-                " It is highly recommended to review the script's code in the details"
-                " box below to make sure it's safe.",
+                self.tr(
+                    "{addon_name} is requesting to run a Python script at every game launch. "
+                    "It is highly recommended to review the script's code in the details "
+                    "box below to make sure it's safe."
+                ).format(addon_name=addon_name),
                 script_contents,
             ):
                 game_config = self.config_manager.read_game_config_file(self.game_id)

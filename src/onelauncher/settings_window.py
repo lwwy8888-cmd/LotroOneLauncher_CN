@@ -172,13 +172,13 @@ class SettingsWindow(FramelessQDialogWithStylePreview):
         )
 
         self.ui.gamesSortingModeComboBox.addItem(
-            "Priority", userData=GamesSortingMode.PRIORITY
+            self.tr("Priority"), userData=GamesSortingMode.PRIORITY
         )
         self.ui.gamesSortingModeComboBox.addItem(
-            "Last Played", userData=GamesSortingMode.LAST_PLAYED
+            self.tr("Last Played"), userData=GamesSortingMode.LAST_PLAYED
         )
         self.ui.gamesSortingModeComboBox.addItem(
-            "Alphabetical", userData=GamesSortingMode.ALPHABETICAL
+            self.tr("Alphabetical"), userData=GamesSortingMode.ALPHABETICAL
         )
         self.ui.gamesSortingModeComboBox.setCurrentIndex(
             self.ui.gamesSortingModeComboBox.findData(program_config.games_sorting_mode)
@@ -319,9 +319,9 @@ class SettingsWindow(FramelessQDialogWithStylePreview):
 
     def setup_client_type_combo_box(self) -> None:
         combo_box_item_names = {
-            ClientType.WIN64: "64-bit",
-            ClientType.WIN32: "32-bit",
-            ClientType.WIN32_LEGACY: "32-bit Legacy",
+            ClientType.WIN64: self.tr("64-bit"),
+            ClientType.WIN32: self.tr("32-bit"),
+            ClientType.WIN32_LEGACY: self.tr("32-bit Legacy"),
         }
         game_config = self.config_manager.read_game_config_file(self.game_id)
         self.ui.clientTypeComboBox.addItem(
@@ -355,14 +355,15 @@ class SettingsWindow(FramelessQDialogWithStylePreview):
                     )
                     current_item_text = self.ui.clientTypeComboBox.itemText(item_index)
                     self.ui.clientTypeComboBox.setItemText(
-                        item_index, f"{current_item_text} (Not found)"
+                        item_index,
+                        self.tr("{name} (Not found)").format(name=current_item_text),
                     )
 
     async def run_standard_game_launcher(self, disable_patching: bool = False) -> None:
         game_config = self.config_manager.get_game_config(self.game_id)
         launcher_path = await get_standard_game_launcher_path(game_config=game_config)
         if launcher_path is None:
-            show_warning_message("No valid launcher executable found", self)
+            show_warning_message(self.tr("No valid launcher executable found"), self)
             return
 
         command: tuple[str | Path, ...] = (launcher_path,)
@@ -413,7 +414,7 @@ class SettingsWindow(FramelessQDialogWithStylePreview):
             start_dir = Path(gameDirLineEdit)
 
         folder = self.browse_for_directory(
-            start_dir=start_dir, caption="Game Directory"
+            start_dir=start_dir, caption=self.tr("Game Directory")
         )
         if folder is None:
             return None
@@ -423,15 +424,16 @@ class SettingsWindow(FramelessQDialogWithStylePreview):
                 self.ui.gameDirLineEdit.setText(str(folder))
             else:
                 show_warning_message(
-                    f"The folder selected isn't a valid installation folder for "
-                    f"{game_config.game_type}.",
+                    self.tr(
+                        "The folder selected isn't a valid installation folder for {game_type}."
+                    ).format(game_type=game_config.game_type),
                     self,
                 )
 
     def browse_for_game_settings_dir(self) -> None:
         folder = self.browse_for_directory(
             start_dir=platform_dirs.user_documents_path,
-            caption="Game Settings Directory",
+            caption=self.tr("Game Settings Directory"),
         )
         if folder is None:
             return None
@@ -495,7 +497,10 @@ class SettingsWindow(FramelessQDialogWithStylePreview):
 
         if not self.ui.gameNameLineEdit.hasAcceptableInput():
             show_warning_message(
-                "The game name you've chosen is already in use by another game", self
+                self.tr(
+                    "The game name you've chosen is already in use by another game"
+                ),
+                self,
             )
             return
         self.config_manager.update_game_config_file(
