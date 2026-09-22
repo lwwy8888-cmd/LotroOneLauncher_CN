@@ -7,3 +7,7 @@ display_name = "简体中文"
 # used is in the client_local_{game_language_name}.dat'
 # file in the game directory.
 game_language_name = "Chinese"
+
+# Language code used in the game's newsfeed URL. The game has no Simplified
+# Chinese newsfeed, so English is used instead of "zh".
+newsfeed_language = "en"

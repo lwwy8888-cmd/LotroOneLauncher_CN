@@ -30,6 +30,10 @@ class OneLauncherLocale:
     data_dir: Path
     display_name: str
     game_language_name: str
+    newsfeed_language: str | None = None
+    """Language code used in the game's newsfeed URL. Defaults to the base
+    language of `lang_tag`. Set by locales whose language has no newsfeed of
+    its own, such as zh-CN, so they can fall back to another language."""
 
     @override
     def __str__(self) -> str:
@@ -47,7 +51,10 @@ class OneLauncherLocale:
 
         display_name = settings_dict["display_name"]
         game_language_name = settings_dict["game_language_name"]
-        return cls(data_dir.name, data_dir, display_name, game_language_name)
+        newsfeed_language = settings_dict.get("newsfeed_language")
+        return cls(
+            data_dir.name, data_dir, display_name, game_language_name, newsfeed_language
+        )
 
     def get_resource(self, relative_path: Path) -> Path:
         """Returns the localized resource for path

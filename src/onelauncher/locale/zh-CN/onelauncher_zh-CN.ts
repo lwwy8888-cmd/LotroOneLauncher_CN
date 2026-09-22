@@ -1180,12 +1180,17 @@
             <translation>检查 %s 更新时发生网络错误</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1168" />
+            <location filename="../../main_window.py" line="1157" />
+            <source>Could not parse the release version of {tag}. Skipping update check.</source>
+            <translation>无法解析 {tag} 的版本号，跳过更新检查。</translation>
+        </message>
+        <message>
+            <location filename="../../main_window.py" line="1179" />
             <source>There is a new version of {title} available! {link}</source>
             <translation>发现 {title} 新版本！{link}</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1178" />
+            <location filename="../../main_window.py" line="1189" />
             <source>%s is up to date</source>
             <translation>%s 已是最新版本</translation>
         </message>
@@ -1294,7 +1299,7 @@
     <context>
         <name>resources</name>
         <message>
-            <location filename="../../resources.py" line="170" />
+            <location filename="../../resources.py" line="177" />
             <source>%s does not match a game language name for an available locale.</source>
             <translation>%s 与任何可用语言的游戏语言名都不匹配。</translation>
         </message>

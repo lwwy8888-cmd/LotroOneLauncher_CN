@@ -1148,7 +1148,18 @@ async def check_for_update() -> None:
         return
     release_dictionary = response.json()
 
-    release_version = packaging.version.parse(release_dictionary["tag_name"])
+    try:
+        release_version = packaging.version.parse(release_dictionary["tag_name"])
+    # Tags that are not valid PEP 440 versions, for example ones with a custom
+    # suffix like "v2.1.3-cn.1". A broken tag should not take the app down.
+    except (KeyError, packaging.version.InvalidVersion):
+        logger.warning(
+            QtCore.QCoreApplication.translate(
+                "mainWindow",
+                "Could not parse the release version of {tag}. Skipping update check.",
+            ).format(tag=release_dictionary.get("tag_name")),
+        )
+        return
 
     if release_version > __about__.version_parsed:
         url = release_dictionary["html_url"]

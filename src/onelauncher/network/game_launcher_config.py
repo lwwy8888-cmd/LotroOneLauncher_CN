@@ -245,4 +245,5 @@ class GameLauncherConfig:
         else:
             newsfeed_url_template = self._newsfeed_url_template
 
-        return newsfeed_url_template.replace("{lang}", locale.lang_tag.split("-")[0])
+        language = locale.newsfeed_language or locale.lang_tag.split("-")[0]
+        return newsfeed_url_template.replace("{lang}", language)
