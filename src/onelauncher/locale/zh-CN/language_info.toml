@@ -6,7 +6,10 @@ display_name = "简体中文"
 # The most obvious example of where this is
 # used is in the client_local_{game_language_name}.dat'
 # file in the game directory.
-game_language_name = "Chinese"
+# The game has no Simplified Chinese client, so the English one is used. This
+# value has to match the client_local_<name>.dat file in the game directory and
+# is also passed to patchclient.dll as --language.
+game_language_name = "English"
 
 # Language code used for game server resources: newsfeed, patch file lists,
 # and banner images. The game has no Simplified Chinese resources, so English
