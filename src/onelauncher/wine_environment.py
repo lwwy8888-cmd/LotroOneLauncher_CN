@@ -135,7 +135,9 @@ class WineManagement:
 
     def create_progress_dialog(self) -> QtWidgets.QProgressDialog:
         dialog = QtWidgets.QProgressDialog(
-            "Checking for updates...",
+            QtCore.QCoreApplication.translate(
+                "WineManagement", "Checking for updates..."
+            ),
             "",
             0,
             100,

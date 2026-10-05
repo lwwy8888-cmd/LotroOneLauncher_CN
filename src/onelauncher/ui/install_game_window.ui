@@ -42,8 +42,7 @@
                                     <widget class="NoOddSizesQToolButton"
                                         name="selectInstallDirButton">
                                         <property name="toolTip">
-                                            <string>Select game install directory from the file
-                                                browser</string>
+                                            <string>Select game install directory from the file browser</string>
                                         </property>
                                         <property name="arrowType">
                                             <enum>Qt::ArrowType::NoArrow</enum>

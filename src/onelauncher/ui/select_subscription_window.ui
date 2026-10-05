@@ -28,7 +28,7 @@
                               <property name="text">
                                     <string>Multiple game sub-accounts found
 
-                                          Please select one</string>
+Please select one</string>
                               </property>
                               <property name="alignment">
                                     <set>Qt::AlignmentFlag::AlignCenter</set>

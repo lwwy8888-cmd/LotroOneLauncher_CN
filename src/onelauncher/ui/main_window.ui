@@ -364,8 +364,7 @@
                                                             <widget class="QCheckBox"
                                                                 name="chkSaveAccount">
                                                                 <property name="toolTip">
-                                                                    <string>Save last used world and
-                                                                        account name</string>
+                                                                    <string>Save last used world and account name</string>
                                                                 </property>
                                                                 <property name="text">
                                                                     <string>Remember account</string>

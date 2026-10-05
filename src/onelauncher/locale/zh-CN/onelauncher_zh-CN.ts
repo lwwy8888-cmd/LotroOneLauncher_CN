@@ -3,160 +3,220 @@
     <context>
         <name>AddonManagerWindow</name>
         <message>
+            <location filename="../../addon_manager_window.py" line="225" />
+            <source>Installed</source>
+            <translation>已安装</translation>
+        </message>
+        <message>
+            <location filename="../../addon_manager_window.py" line="226" />
+            <source>Find More</source>
+            <translation>查找更多</translation>
+        </message>
+        <message>
+            <location filename="../../addon_manager_window.py" line="227" />
+            <source>Plugins</source>
+            <translation>插件</translation>
+        </message>
+        <message>
+            <location filename="../../addon_manager_window.py" line="228" />
+            <source>Skins</source>
+            <translation>皮肤</translation>
+        </message>
+        <message>
+            <location filename="../../addon_manager_window.py" line="229" />
+            <source>Music</source>
+            <translation>音乐</translation>
+        </message>
+        <message>
             <location filename="../../addon_manager_window.py" line="230" />
+            <source>ID</source>
+            <translation>ID</translation>
+        </message>
+        <message>
+            <location filename="../../addon_manager_window.py" line="231" />
+            <source>Name</source>
+            <translation>名称</translation>
+        </message>
+        <message>
+            <location filename="../../addon_manager_window.py" line="232" />
+            <source>Category</source>
+            <translation>分类</translation>
+        </message>
+        <message>
+            <location filename="../../addon_manager_window.py" line="233" />
+            <source>Version</source>
+            <translation>版本</translation>
+        </message>
+        <message>
+            <location filename="../../addon_manager_window.py" line="234" />
+            <source>Author</source>
+            <translation>作者</translation>
+        </message>
+        <message>
+            <location filename="../../addon_manager_window.py" line="235" />
+            <source>Latest Release</source>
+            <translation>最新版本</translation>
+        </message>
+        <message>
+            <location filename="../../addon_manager_window.py" line="1443" />
+            <source>Unmanaged</source>
+            <translation>未管理</translation>
+        </message>
+        <message>
+            <location filename="../../addon_manager_window.py" line="255" />
             <source>Addons Manager - {name}</source>
             <translation>插件管理器 - {name}</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="512" />
-            <location filename="../../addon_manager_window.py" line="1603" />
+            <location filename="../../addon_manager_window.py" line="540" />
+            <location filename="../../addon_manager_window.py" line="1635" />
             <source>`.plugincompendium` file has invalid XML: %s</source>
             <translation>`.plugincompendium` 文件的 XML 无效：%s</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="534" />
+            <location filename="../../addon_manager_window.py" line="562" />
             <source>%s has misconfigured descriptors</source>
             <translation>%s 的描述符配置有误</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="578" />
+            <location filename="../../addon_manager_window.py" line="606" />
             <source>`%s` has invalid XML</source>
             <translation>`%s` 的 XML 无效</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="703" />
+            <location filename="../../addon_manager_window.py" line="731" />
             <source>Downloading remote addons info</source>
             <translation>正在下载远程插件信息</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="719" />
+            <location filename="../../addon_manager_window.py" line="747" />
             <source>Addon Files/Archives</source>
             <translation>插件文件/压缩包</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="740" />
+            <location filename="../../addon_manager_window.py" line="768" />
             <source>%s does not support .rar archives, because it is a proprietary format that would require an external program to extract</source>
             <translation>%s 不支持 .rar 压缩包，因为它是专有格式，需要借助外部程序才能解压</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="752" />
-            <location filename="../../addon_manager_window.py" line="936" />
+            <location filename="../../addon_manager_window.py" line="780" />
+            <location filename="../../addon_manager_window.py" line="964" />
             <source>DDO does not support .abc/music files</source>
             <translation>DDO 不支持 .abc/音乐文件</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="756" />
+            <location filename="../../addon_manager_window.py" line="784" />
             <source>ABC file installed at %s</source>
             <translation>ABC 文件已安装到 %s</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="774" />
+            <location filename="../../addon_manager_window.py" line="802" />
             <source>Addon Zip is empty</source>
             <translation>插件压缩包为空</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="800" />
+            <location filename="../../addon_manager_window.py" line="828" />
             <source>DDO does not support plugins</source>
             <translation>DDO 不支持插件</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="842" />
+            <location filename="../../addon_manager_window.py" line="870" />
             <source>Plugin doesn't have an author folder with a .plugin file</source>
             <translation>插件没有包含 .plugin 文件的作者文件夹</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="902" />
+            <location filename="../../addon_manager_window.py" line="930" />
             <source>Installed plugin corresponding to %s %s</source>
             <translation>已安装 %s %s 对应的插件</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="923" />
+            <location filename="../../addon_manager_window.py" line="951" />
             <source>Addon has multiple compendium files</source>
             <translation>插件包含多个清单文件</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="970" />
+            <location filename="../../addon_manager_window.py" line="998" />
             <source>%s music installed at %s</source>
             <translation>%s 音乐已安装到 %s</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="1007" />
+            <location filename="../../addon_manager_window.py" line="1035" />
             <source>%s skin installed at %s</source>
             <translation>%s 皮肤已安装到 %s</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="1540" />
+            <location filename="../../addon_manager_window.py" line="1572" />
             <source>Are you sure you want to remove this {count} addon?</source>
             <translation>确定要移除这 {count} 个插件吗？</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="1544" />
+            <location filename="../../addon_manager_window.py" line="1576" />
             <source>Are you sure you want to remove these {count} addons?</source>
             <translation>确定要移除这 {count} 个插件吗？</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="1634" />
+            <location filename="../../addon_manager_window.py" line="1666" />
             <source>`.plugin` file has invalid XML: %s</source>
             <translation>`.plugin` 文件的 XML 无效：%s</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="1659" />
+            <location filename="../../addon_manager_window.py" line="1691" />
             <source>%s plugin uninstalled</source>
             <translation>%s 插件已卸载</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="1683" />
+            <location filename="../../addon_manager_window.py" line="1715" />
             <source>%s skin uninstalled</source>
             <translation>%s 皮肤已卸载</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="1711" />
+            <location filename="../../addon_manager_window.py" line="1743" />
             <source>%s music uninstalled</source>
             <translation>%s 音乐已卸载</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="1736" />
+            <location filename="../../addon_manager_window.py" line="1768" />
             <source>{count} addon depends on {name}. Are you sure you want to remove it?</source>
             <translation>有 {count} 个插件依赖于 {name}，确定要移除吗？</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="1740" />
+            <location filename="../../addon_manager_window.py" line="1772" />
             <source>{count} addons depend on {name}. Are you sure you want to remove it?</source>
             <translation>有 {count} 个插件依赖于 {name}，确定要移除吗？</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="1810" />
+            <location filename="../../addon_manager_window.py" line="1842" />
             <source>Remove addons</source>
             <translation>移除插件</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="1813" />
+            <location filename="../../addon_manager_window.py" line="1845" />
             <source>Install addons</source>
             <translation>安装插件</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="1886" />
-            <location filename="../../addon_manager_window.py" line="1968" />
+            <location filename="../../addon_manager_window.py" line="1918" />
+            <location filename="../../addon_manager_window.py" line="2000" />
             <source>There was a network error. You may want to check your connection.</source>
             <translation>网络出错，请检查你的网络连接。</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="1897" />
+            <location filename="../../addon_manager_window.py" line="1929" />
             <source>Addons feed has invalid XML. Please report this error if it continues.</source>
             <translation>插件源的 XML 无效。如果持续出现，请反馈此问题。</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="2158" />
+            <location filename="../../addon_manager_window.py" line="2190" />
             <source>Are you sure you want to uninstall this addon?</source>
             <translation>确定要卸载此插件吗？</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="2501" />
+            <location filename="../../addon_manager_window.py" line="2533" />
             <source>'%s' startup script does not exist, so it could not be enabled.</source>
             <translation>「%s」启动脚本不存在，无法启用。</translation>
         </message>
         <message>
-            <location filename="../../addon_manager_window.py" line="2586" />
+            <location filename="../../addon_manager_window.py" line="2618" />
             <source>{addon_name} is requesting to run a Python script at every game launch. It is highly recommended to review the script's code in the details box below to make sure it's safe.</source>
             <translation>{addon_name} 请求在每次启动游戏时运行一个 Python 脚本。强烈建议先查看下方详细信息中的脚本代码，确认其安全。</translation>
         </message>
@@ -353,87 +413,87 @@
             <translation>队列位置：%s</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="887" />
+            <location filename="../../main_window.py" line="890" />
             <source>Game directory not found</source>
             <translation>未找到游戏目录</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="898" />
+            <location filename="../../main_window.py" line="901" />
             <source>Game directory game type does not match config</source>
             <translation>游戏目录的游戏类型与配置不匹配</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="904" />
+            <location filename="../../main_window.py" line="907" />
             <source>Game directory is not valid</source>
             <translation>游戏目录无效</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="917" />
+            <location filename="../../main_window.py" line="920" />
             <source>The game needs to be patched. That can be done from the dropdown menu on the Play button.</source>
             <translation>游戏需要打补丁，可通过「开始游戏」按钮的下拉菜单完成。</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="944" />
+            <location filename="../../main_window.py" line="947" />
             <source>Error parsing local launcher config</source>
             <translation>解析本地启动器配置出错</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="973" />
+            <location filename="../../main_window.py" line="976" />
             <source>&lt;html&gt;&lt;body&gt;&lt;p style="text-align:center;"&gt;Loading ...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
             <translation>&lt;html&gt;&lt;body&gt;&lt;p style="text-align:center;"&gt;正在加载……&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="977" />
+            <location filename="../../main_window.py" line="980" />
             <source>Initializing, please wait...</source>
             <translation>正在初始化，请稍候……</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="994" />
+            <location filename="../../main_window.py" line="997" />
             <source>No system keyring found. Password and subscription saving will fail.</source>
             <translation>未找到系统钥匙串，将无法保存密码和订阅。</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1001" />
+            <location filename="../../main_window.py" line="1004" />
             <source>Failed to unlock system keyring. Password and subscription saving will fail.</source>
             <translation>解锁系统钥匙串失败，将无法保存密码和订阅。</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1030" />
+            <location filename="../../main_window.py" line="1033" />
             <source>Network error while fetching game services info</source>
             <translation>获取游戏服务信息时发生网络错误</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1035" />
+            <location filename="../../main_window.py" line="1038" />
             <source>Non-network error with GLS datacenter service. Please report this issue, if it continues.</source>
             <translation>GLS 数据中心服务出现非网络错误。如果持续出现，请反馈此问题。</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1041" />
+            <location filename="../../main_window.py" line="1044" />
             <source>Fetched game services info</source>
             <translation>已获取游戏服务信息</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1067" />
+            <location filename="../../main_window.py" line="1070" />
             <source>World list obtained</source>
             <translation>已获取服务器列表</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1076" />
+            <location filename="../../main_window.py" line="1079" />
             <source>Game launcher configuration read</source>
             <translation>已读取游戏启动器配置</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1080" />
+            <location filename="../../main_window.py" line="1083" />
             <source>Network error while retrieving game launcher config</source>
             <translation>获取游戏启动器配置时发生网络错误</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1086" />
+            <location filename="../../main_window.py" line="1089" />
             <source>Game launcher config has incompatible format. Please report this issue if using a supported game server</source>
             <translation>游戏启动器配置格式不兼容。如果你使用的是受支持的服务器，请反馈此问题。</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1105" />
+            <location filename="../../main_window.py" line="1108" />
             <source>Network error while downloading newsfeed</source>
             <translation>下载新闻源时发生网络错误</translation>
         </message>
@@ -605,57 +665,62 @@
     <context>
         <name>WineManagement</name>
         <message>
-            <location filename="../../wine_environment.py" line="166" />
+            <location filename="../../wine_environment.py" line="138" />
+            <source>Checking for updates...</source>
+            <translation>正在检查更新……</translation>
+        </message>
+        <message>
+            <location filename="../../wine_environment.py" line="168" />
             <source>There was an error downloading '{url}'. You may want to check your network connection.</source>
             <translation>下载“{url}”时出错，请检查网络连接。</translation>
         </message>
         <message>
-            <location filename="../../wine_environment.py" line="190" />
+            <location filename="../../wine_environment.py" line="192" />
             <source>Downloading WINE...</source>
             <translation>正在下载 WINE……</translation>
         </message>
         <message>
-            <location filename="../../wine_environment.py" line="201" />
+            <location filename="../../wine_environment.py" line="203" />
             <source>Extracting WINE...</source>
             <translation>正在解压 WINE……</translation>
         </message>
         <message>
-            <location filename="../../wine_environment.py" line="264" />
+            <location filename="../../wine_environment.py" line="266" />
             <source>Downloading DXVK...</source>
             <translation>正在下载 DXVK……</translation>
         </message>
         <message>
-            <location filename="../../wine_environment.py" line="272" />
+            <location filename="../../wine_environment.py" line="274" />
             <source>Extracting DXVK...</source>
             <translation>正在解压 DXVK……</translation>
         </message>
         <message>
-            <location filename="../../wine_environment.py" line="322" />
+            <location filename="../../wine_environment.py" line="324" />
             <source>Downloading DirectX...</source>
             <translation>正在下载 DirectX……</translation>
         </message>
         <message>
-            <location filename="../../wine_environment.py" line="334" />
+            <location filename="../../wine_environment.py" line="336" />
             <source>There was a hash error downloading DirectX. You may want to retry.</source>
             <translation>DirectX 下载校验失败，建议重试。</translation>
         </message>
         <message>
-            <location filename="../../wine_environment.py" line="344" />
+            <location filename="../../wine_environment.py" line="346" />
             <source>Extracting DirectX...</source>
             <translation>正在解压 DirectX……</translation>
         </message>
         <message>
-            <location filename="../../wine_environment.py" line="401" />
+            <location filename="../../wine_environment.py" line="403" />
             <source>Downloading WINE dependencies...</source>
             <translation>正在下载 WINE 依赖……</translation>
         </message>
         <message>
-            <location filename="../../wine_environment.py" line="414" />
+            <location filename="../../wine_environment.py" line="416" />
             <source>Extracting WINE dependencies...</source>
             <translation>正在解压 WINE 依赖……</translation>
         </message>
         <message>
-            <location filename="../../wine_environment.py" line="475" />
+            <location filename="../../wine_environment.py" line="477" />
             <source>Attempt to use WINE on Windows. No changes were made.</source>
             <translation>尝试在 Windows 上使用 WINE。未做任何更改。</translation>
         </message>
@@ -928,34 +993,33 @@
         </message>
         <message>
             <location filename="../../ui/install_game_window.ui" line="37" />
-            <location filename="../../ui/install_game_window.ui" line="63" />
+            <location filename="../../ui/install_game_window.ui" line="62" />
             <source>Directory where the game will be installed</source>
             <translation>游戏的安装目录</translation>
         </message>
         <message>
             <location filename="../../ui/install_game_window.ui" line="45" />
-            <source>Select game install directory from the file
-                                                browser</source>
+            <source>Select game install directory from the file browser</source>
             <translation>从文件浏览器中选择游戏安装目录</translation>
         </message>
         <message>
-            <location filename="../../ui/install_game_window.ui" line="52" />
+            <location filename="../../ui/install_game_window.ui" line="51" />
             <source>icon-base</source>
             <translation>icon-base</translation>
         </message>
         <message>
-            <location filename="../../ui/install_game_window.ui" line="66" />
+            <location filename="../../ui/install_game_window.ui" line="65" />
             <source>Install Directory</source>
             <translation>安装目录</translation>
         </message>
         <message>
-            <location filename="../../ui/install_game_window.ui" line="73" />
-            <location filename="../../ui/install_game_window.ui" line="86" />
+            <location filename="../../ui/install_game_window.ui" line="72" />
+            <location filename="../../ui/install_game_window.ui" line="85" />
             <source>Which game to install</source>
             <translation>要安装的游戏</translation>
         </message>
         <message>
-            <location filename="../../ui/install_game_window.ui" line="89" />
+            <location filename="../../ui/install_game_window.ui" line="88" />
             <source>Game Type</source>
             <translation>游戏类型</translation>
         </message>
@@ -1024,8 +1088,8 @@
         <name>mainWindow</name>
         <message>
             <location filename="../../ui/main_window.ui" line="53" />
-            <location filename="../../ui/main_window.ui" line="463" />
-            <location filename="../../ui/main_window.ui" line="466" />
+            <location filename="../../ui/main_window.ui" line="462" />
+            <location filename="../../ui/main_window.ui" line="465" />
             <source>Settings</source>
             <translation>设置</translation>
         </message>
@@ -1045,7 +1109,7 @@
         </message>
         <message>
             <location filename="../../ui/main_window.ui" line="108" />
-            <location filename="../../ui/main_window.ui" line="455" />
+            <location filename="../../ui/main_window.ui" line="454" />
             <source>About</source>
             <translation>关于</translation>
         </message>
@@ -1056,8 +1120,8 @@
         </message>
         <message>
             <location filename="../../ui/main_window.ui" line="144" />
-            <location filename="../../ui/main_window.ui" line="474" />
-            <location filename="../../ui/main_window.ui" line="477" />
+            <location filename="../../ui/main_window.ui" line="473" />
+            <location filename="../../ui/main_window.ui" line="476" />
             <source>Exit</source>
             <translation>退出</translation>
         </message>
@@ -1128,69 +1192,68 @@
         </message>
         <message>
             <location filename="../../ui/main_window.ui" line="367" />
-            <source>Save last used world and
-                                                                        account name</source>
+            <source>Save last used world and account name</source>
             <translation>记住上次使用的服务器和账号名称</translation>
         </message>
         <message>
-            <location filename="../../ui/main_window.ui" line="371" />
+            <location filename="../../ui/main_window.ui" line="370" />
             <source>Remember account</source>
             <translation>记住账号</translation>
         </message>
         <message>
-            <location filename="../../ui/main_window.ui" line="380" />
+            <location filename="../../ui/main_window.ui" line="379" />
             <source>Save last used password</source>
             <translation>记住上次使用的密码</translation>
         </message>
         <message>
-            <location filename="../../ui/main_window.ui" line="383" />
+            <location filename="../../ui/main_window.ui" line="382" />
             <source>Remember password</source>
             <translation>记住密码</translation>
         </message>
         <message>
-            <location filename="../../ui/main_window.ui" line="434" />
-            <location filename="../../ui/main_window.ui" line="437" />
-            <location filename="../../ui/main_window.ui" line="440" />
+            <location filename="../../ui/main_window.ui" line="433" />
+            <location filename="../../ui/main_window.ui" line="436" />
+            <location filename="../../ui/main_window.ui" line="439" />
             <source>Patch</source>
             <translation>更新补丁</translation>
         </message>
         <message>
-            <location filename="../../ui/main_window.ui" line="445" />
+            <location filename="../../ui/main_window.ui" line="444" />
             <source>Lord of the Rings Online</source>
             <translation>指环王 Online</translation>
         </message>
         <message>
-            <location filename="../../ui/main_window.ui" line="450" />
+            <location filename="../../ui/main_window.ui" line="449" />
             <source>Dungeons and Dragons Online</source>
             <translation>龙与地下城 Online</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1119" />
+            <location filename="../../main_window.py" line="1122" />
             <source>No updates URL available</source>
             <translation>没有可用的更新地址</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1124" />
+            <location filename="../../main_window.py" line="1127" />
             <source>Repository URL is not at github.com. Update checking is currently only supported for github.com</source>
             <translation>仓库地址不在 github.com 上。目前仅支持检查 github.com 上的更新。</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1143" />
+            <location filename="../../main_window.py" line="1146" />
             <source>Network error while checking for %s updates</source>
             <translation>检查 %s 更新时发生网络错误</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1157" />
+            <location filename="../../main_window.py" line="1160" />
             <source>Could not parse the release version of {tag}. Skipping update check.</source>
             <translation>无法解析 {tag} 的版本号，跳过更新检查。</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1179" />
+            <location filename="../../main_window.py" line="1182" />
             <source>There is a new version of {title} available! {link}</source>
             <translation>发现 {title} 新版本！{link}</translation>
         </message>
         <message>
-            <location filename="../../main_window.py" line="1189" />
+            <location filename="../../main_window.py" line="1192" />
             <source>%s is up to date</source>
             <translation>%s 已是最新版本</translation>
         </message>
@@ -1208,67 +1271,67 @@
             <translation>正在下载 %s</translation>
         </message>
         <message>
-            <location filename="../../patch_game.py" line="257" />
+            <location filename="../../patch_game.py" line="261" />
             <source>Download not found: %s</source>
             <translation>未找到下载文件：%s</translation>
         </message>
         <message>
-            <location filename="../../patch_game.py" line="265" />
+            <location filename="../../patch_game.py" line="269" />
             <source>Failed to download %s</source>
             <translation>下载 %s 失败</translation>
         </message>
         <message>
-            <location filename="../../patch_game.py" line="304" />
+            <location filename="../../patch_game.py" line="308" />
             <source>Failed to load game launcher network config</source>
             <translation>加载游戏启动器网络配置失败</translation>
         </message>
         <message>
-            <location filename="../../patch_game.py" line="329" />
+            <location filename="../../patch_game.py" line="334" />
             <source>Network error while downloading patching file list</source>
             <translation>下载补丁文件列表时发生网络错误</translation>
         </message>
         <message>
-            <location filename="../../patch_game.py" line="335" />
+            <location filename="../../patch_game.py" line="340" />
             <source>Error parsing patching file list</source>
             <translation>解析补丁文件列表出错</translation>
         </message>
         <message>
-            <location filename="../../patch_game.py" line="353" />
+            <location filename="../../patch_game.py" line="358" />
             <source>Network error while downloading splashscreens file list</source>
             <translation>下载启动画面文件列表时发生网络错误</translation>
         </message>
         <message>
-            <location filename="../../patch_game.py" line="360" />
+            <location filename="../../patch_game.py" line="365" />
             <source>Error parsing splashscreens file list</source>
             <translation>解析启动画面文件列表出错</translation>
         </message>
         <message>
-            <location filename="../../patch_game.py" line="366" />
+            <location filename="../../patch_game.py" line="371" />
             <source>Game launcher config is missing splashscreens update URL</source>
             <translation>游戏启动器配置缺少启动画面更新地址</translation>
         </message>
         <message>
-            <location filename="../../patch_game.py" line="403" />
+            <location filename="../../patch_game.py" line="408" />
             <source>Patch client %s not found</source>
             <translation>未找到补丁客户端 %s</translation>
         </message>
         <message>
-            <location filename="../../patch_game.py" line="440" />
+            <location filename="../../patch_game.py" line="445" />
             <source>Skipping phase</source>
             <translation>跳过此阶段</translation>
         </message>
         <message>
-            <location filename="../../patch_game.py" line="501" />
+            <location filename="../../patch_game.py" line="506" />
             <source>Patching process failed with %s exit status</source>
             <translation>补丁进程失败，退出状态码 %s</translation>
         </message>
         <message>
-            <location filename="../../patch_game.py" line="507" />
+            <location filename="../../patch_game.py" line="512" />
             <source>Patching failed</source>
             <translation>打补丁失败</translation>
         </message>
         <message>
-            <location filename="../../patch_game.py" line="514" />
+            <location filename="../../patch_game.py" line="519" />
             <source>Failed to start patching</source>
             <translation>启动补丁流程失败</translation>
         </message>
@@ -1299,7 +1362,7 @@
     <context>
         <name>resources</name>
         <message>
-            <location filename="../../resources.py" line="177" />
+            <location filename="../../resources.py" line="178" />
             <source>%s does not match a game language name for an available locale.</source>
             <translation>%s 与任何可用语言的游戏语言名都不匹配。</translation>
         </message>
@@ -1315,7 +1378,7 @@
             <location filename="../../ui/select_subscription_window.ui" line="29" />
             <source>Multiple game sub-accounts found
 
-                                          Please select one</source>
+Please select one</source>
             <translation>找到多个游戏子账号，请选择其中一个</translation>
         </message>
     </context>

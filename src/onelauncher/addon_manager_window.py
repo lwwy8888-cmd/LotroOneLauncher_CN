@@ -210,6 +210,31 @@ class AddonManagerWindow(QWidgetWithStylePreview):
     CATEGORY_UNMANAGED: Final = "Unmanaged"
     """Category name for unmanaged addons"""
 
+    # The values above are used as stable internal keys (compared with `==`, looked
+    # up by index and stored in the addons cache database), so they must never be
+    # translated in place. Only the text shown to the user is translated, and every
+    # translation below is written as a literal `tr()` call so that lupdate can
+    # extract it.
+    def displayName(self, key: str) -> str:
+        """Translate one of the fixed internal keys below into its UI text.
+
+        Anything not in the mapping is returned unchanged, so addon names,
+        versions and categories from lotrointerface.com pass through as-is.
+        """
+        return {
+            "Installed": self.tr("Installed"),
+            "Find More": self.tr("Find More"),
+            "Plugins": self.tr("Plugins"),
+            "Skins": self.tr("Skins"),
+            "Music": self.tr("Music"),
+            "ID": self.tr("ID"),
+            "Name": self.tr("Name"),
+            "Category": self.tr("Category"),
+            "Version": self.tr("Version"),
+            "Author": self.tr("Author"),
+            "Latest Release": self.tr("Latest Release"),
+        }.get(key, key)
+
     ADDONS_CACHE_PATH = platform_dirs.user_cache_path / "addons_cache.sqlite"
 
     def __init__(
@@ -233,7 +258,7 @@ class AddonManagerWindow(QWidgetWithStylePreview):
         color_scheme_changed = get_qapp().styleHints().colorSchemeChanged
 
         for source_tab_name in self.SOURCE_TAB_NAMES:
-            self.ui.tabBarSource.addTab(source_tab_name)
+            self.ui.tabBarSource.addTab(self.displayName(source_tab_name))
         self.ui.tabBarSource.setExpanding(True)
         self.ui.tabBarSource.currentChanged.connect(self.tabBarIndexChanged)
         self.tab_names: tuple[AddonManagerWindow.AddonTypeTabName, ...]
@@ -244,8 +269,9 @@ class AddonManagerWindow(QWidgetWithStylePreview):
         else:
             assert_never(game_config.game_type)
         for addon_tab_name in self.tab_names:
-            self.ui.tabBarInstalled.addTab(addon_tab_name)
-            self.ui.tabBarRemote.addTab(addon_tab_name)
+            translated_tab_name = self.displayName(addon_tab_name)
+            self.ui.tabBarInstalled.addTab(translated_tab_name)
+            self.ui.tabBarRemote.addTab(translated_tab_name)
         # Bar won't show up without setting a minimum size
         self.ui.tabBarInstalled.setMinimumSize(1, 1)
         self.ui.tabBarRemote.setMinimumSize(1, 1)
@@ -336,7 +362,9 @@ class AddonManagerWindow(QWidgetWithStylePreview):
         """
         for table in self.ui_tables_installed + self.ui_tables_remote:
             table.setColumnCount(len(self.TABLE_WIDGET_COLUMNS))
-            table.setHorizontalHeaderLabels(self.TABLE_WIDGET_COLUMNS)
+            table.setHorizontalHeaderLabels(
+                [self.displayName(column) for column in self.TABLE_WIDGET_COLUMNS]
+            )
             table.hideColumn(self.TABLE_WIDGET_COLUMN_INDEXES["ID"])
             table.sortItems(self.TABLE_WIDGET_COLUMN_INDEXES["Name"])
 
@@ -1409,10 +1437,14 @@ class AddonManagerWindow(QWidgetWithStylePreview):
                 else:
                     tbl_item.setText(addon_info.name)
             elif column_name == "Category":
-                tbl_item.setText(addon_info.category)
-                # Set color to red if addon is unmanaged
+                # Only the category we set ourselves is translated. Categories that
+                # come from lotrointerface.com are shown exactly as provided.
                 if addon_info.category == self.CATEGORY_UNMANAGED:
+                    tbl_item.setText(self.tr("Unmanaged"))
+                    # Set color to red if addon is unmanaged
                     tbl_item.setForeground(QtGui.QColor("darkred"))
+                else:
+                    tbl_item.setText(addon_info.category)
             elif column_name == "Version":
                 if addon_info.version.startswith("(Updated) "):
                     tbl_item.setText(addon_info.version.split("(Updated) ")[1])
