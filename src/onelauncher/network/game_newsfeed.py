@@ -6,7 +6,6 @@ from io import StringIO
 from typing import assert_never
 
 import feedparser
-from babel.dates import format_datetime
 from PySide6 import QtCore
 
 from onelauncher.game_config import GameConfig, GameType
@@ -105,9 +104,7 @@ def newsfeed_xml_to_html(
         if "published_parsed" in entry:
             timestamp = calendar.timegm(entry["published_parsed"])
             datetime_object = datetime.fromtimestamp(timestamp)
-            date = format_datetime(
-                datetime_object, format="medium", locale=locale.babel_locale
-            )
+            date = locale.format_datetime_medium(datetime_object)
         else:
             date = ""
         entry_url = entry.get("link", "")

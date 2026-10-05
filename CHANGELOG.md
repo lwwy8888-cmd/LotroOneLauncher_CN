@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.1.4 (2026-09-22)
+
+Simplified Chinese localization release.
+
+### Improvements
+
+- (i18n): complete Simplified Chinese translation, including the addon manager
+  window (tabs, table headers, category column)
+- (i18n): fix translations that were silently dropped because the strings in the
+  `.ui` files spanned multiple lines
+- (portable): drop the Babel dependency in favor of Qt's own locale data
+- (portable): exclude unused Qt modules and translation files, shrinking the
+  portable archive from 72 MB to about 51 MB
+
 ## 2.1.3 (2026-07-16)
 
 **Important macOS info**:

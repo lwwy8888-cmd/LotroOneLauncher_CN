@@ -25,7 +25,7 @@
 
 本分支提供 **Windows 64 位免安装版**：下载压缩包，解压后直接运行 `LotroOneLauncher_CN.exe` 即可，无需安装程序。
 
-- [直接下载 2.1.3 免安装包](https://github.com/lwwy8888-cmd/LotroOneLauncher_CN/releases/latest/download/LotroOneLauncher_CN-2.1.3-win64-portable.zip)
+- [直接下载 2.1.4 免安装包](https://github.com/lwwy8888-cmd/LotroOneLauncher_CN/releases/latest/download/LotroOneLauncher_CN-2.1.4-win64-portable.zip)
 - [全部发布版](https://github.com/lwwy8888-cmd/LotroOneLauncher_CN/releases)
 - [系统要求](#系统要求)
 - [从源码运行](CONTRIBUTING.md#development-install)
